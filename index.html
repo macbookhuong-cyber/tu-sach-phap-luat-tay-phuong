@@ -47,8 +47,12 @@ a{color:var(--accent)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 
 /* Dải đầu trang */
-.topbar{background:var(--accent);color:#fff;font-size:13px;letter-spacing:.02em}
-.topbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:7px;padding-bottom:7px}
+.topbar{background:var(--accent);color:#fff;font-family:var(--font-display);text-align:center}
+.topbar .wrap{display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:10px;padding-bottom:12px}
+.qh1{font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+.qh2{font-weight:700;font-size:15.5px;letter-spacing:.02em;padding-bottom:4px;border-bottom:1.5px solid #fff}
+.org{flex:1 1 420px;min-width:0}
+.updated{display:block;margin-top:2px;font-size:13px;color:var(--muted)}
 header.masthead{background:var(--surface);border-bottom:1px solid var(--line)}
 header.masthead .wrap{display:flex;align-items:center;gap:18px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
 .emblem{flex:none;width:58px;height:58px;border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 0 0 3px var(--gold) inset}
@@ -145,7 +149,7 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM — Độc lập - Tự do - Hạnh phúc</span><span>Cập nhật ngày 14/11/2026</span></div></div>
+<div class="topbar"><div class="wrap"><span class="qh1">Cộng hòa xã hội chủ nghĩa Việt Nam</span><span class="qh2">Độc lập - Tự do - Hạnh phúc</span></div></div>
 
 <header class="masthead"><div class="wrap">
   <div class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#f4d27a" d="M12 2.5l2.47 6.2 6.65.4-5.13 4.25 1.66 6.45L12 16.2l-5.65 3.6 1.66-6.45L2.88 9.1l6.65-.4z"/></svg></div>
@@ -153,7 +157,7 @@ footer b{color:var(--ink)}
     <small>Ủy ban nhân dân xã Tây Phương · Thành phố Hà Nội</small>
     <h1>Tủ sách pháp luật điện tử</h1>
     <div class="badge">Mô hình chuyển đổi số của Phòng Nội vụ - Tư pháp xã Tây Phương</div>
-    <p>Văn bản của xã, của Thành phố, của Trung ương và đường dẫn tới các cổng tra cứu chính thống. Phòng Nội vụ - Tư pháp quản lý, cập nhật.</p>
+    <p>Văn bản của Trung ương, văn bản của Thành phố, văn bản của xã và đường dẫn tới các cổng tra cứu chính thống. Phòng Nội vụ - Tư pháp quản lý, cập nhật. <span class="updated">Cập nhật ngày 14/11/2026.</span></p>
   </div>
 </div></header>
 
@@ -172,7 +176,7 @@ footer b{color:var(--ink)}
 <main><div class="wrap" id="view"></div></main>
 
 <footer><div class="wrap">
-  <div><b>Lưu ý khi sử dụng.</b> Tệp văn bản của xã và của Thành phố đăng tại đây là bản điện tử có chữ ký, đóng dấu của cơ quan ban hành. Tình trạng hiệu lực của văn bản Trung ương được rà soát đến ngày 14/11/2026; trước khi áp dụng, đề nghị đối chiếu tại Cơ sở dữ liệu quốc gia về văn bản pháp luật (vbpl.vn) hoặc Cổng Pháp luật quốc gia (phapluat.gov.vn).</div>
+  <div><b>Lưu ý khi sử dụng.</b> Tệp văn bản của Thành phố, văn bản của xã đăng tại đây là bản điện tử có chữ ký, đóng dấu của cơ quan ban hành. Tình trạng hiệu lực của văn bản Trung ương được rà soát đến ngày 14/11/2026; trước khi áp dụng, đề nghị đối chiếu tại Cơ sở dữ liệu quốc gia về văn bản pháp luật (vbpl.vn) hoặc Cổng Pháp luật quốc gia (phapluat.gov.vn).</div>
   <div>Trợ giúp pháp lý miễn phí: Tổng đài 1900 6275 (Cổng Pháp luật quốc gia). Phản ánh, kiến nghị về văn bản quy phạm pháp luật: mục “Phản ánh chính sách” trên phapluat.gov.vn, đăng nhập bằng tài khoản VNeID.</div>
   <div><b>Mô hình chuyển đổi số của Phòng Nội vụ - Tư pháp xã Tây Phương.</b> Đơn vị quản lý nội dung: Phòng Nội vụ - Tư pháp, Ủy ban nhân dân xã Tây Phương, thành phố Hà Nội.</div>
 </div></footer>
