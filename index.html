@@ -23,6 +23,7 @@
   --ok:#1f7a4d; --ok-bg:#e3f2ea;
   --warn:#9a5b00; --warn-bg:#fbefd9;
   --info:#24548f; --info-bg:#e4edf8;
+  --so:#0f6b62;
   --font-display:"Noto Serif", Georgia, "Times New Roman", serif;
   --font-body:"Be Vietnam Pro", "Segoe UI", Roboto, Arial, sans-serif;
   color-scheme: light;
@@ -31,14 +32,14 @@
   :root:not([data-theme="light"]){
     --bg:#16130f; --surface:#211d19; --ink:#f1ece6; --muted:#a99f96; --line:#3a332d;
     --accent:#e2645d; --accent-soft:#3a1c1a; --gold:#d4a952;
-    --ok:#6fd0a0; --ok-bg:#16301f; --warn:#f0b65a; --warn-bg:#352611; --info:#8db7ee; --info-bg:#172535;
+    --ok:#6fd0a0; --ok-bg:#16301f; --warn:#f0b65a; --warn-bg:#352611; --info:#8db7ee; --info-bg:#172535; --so:#4fc2b4;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#16130f; --surface:#211d19; --ink:#f1ece6; --muted:#a99f96; --line:#3a332d;
   --accent:#e2645d; --accent-soft:#3a1c1a; --gold:#d4a952;
-  --ok:#6fd0a0; --ok-bg:#16301f; --warn:#f0b65a; --warn-bg:#352611; --info:#8db7ee; --info-bg:#172535;
+  --ok:#6fd0a0; --ok-bg:#16301f; --warn:#f0b65a; --warn-bg:#352611; --info:#8db7ee; --info-bg:#172535; --so:#4fc2b4;
   color-scheme: dark;
 }
 *{box-sizing:border-box}
@@ -135,6 +136,31 @@ footer .wrap{padding-top:20px;padding-bottom:24px;display:grid;gap:8px}
 footer b{color:var(--ink)}
 .internal{margin-top:6px;padding-top:12px;border-top:1px solid var(--line);text-align:center;font-weight:700;color:var(--accent);letter-spacing:.03em}
 .hidden{display:none !important}
+.card.so{border-left-color:var(--so)}
+.card.so .code{color:var(--so)}
+/* Mục lục */
+.toc-banner{position:relative;overflow:hidden;border-radius:14px;padding:26px 28px;margin-bottom:18px;color:#fff;background:linear-gradient(135deg,#8f1c18 0%,#c2410c 60%,#ea8a1e 100%);box-shadow:0 6px 18px rgba(120,30,10,.25)}
+.toc-banner::after{content:"";position:absolute;inset:-60% -10% auto -10%;height:120%;background:radial-gradient(ellipse at top,rgba(255,255,255,.28),rgba(255,255,255,0) 60%);pointer-events:none}
+.toc-banner small{display:block;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffe6c2}
+.toc-banner h2{font-family:var(--font-display);font-size:clamp(24px,3vw,32px);margin:4px 0 6px;color:#fff;text-wrap:balance}
+.toc-banner p{margin:0;max-width:80ch;color:#fff3e3;font-size:14.5px}
+.toc-banner .toc-count{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.toc-banner .toc-count a{color:#fff;text-decoration:none;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600}
+.toc-banner .toc-count a:hover{background:rgba(255,255,255,.28)}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.toc-panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.toc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;color:#fff;font-weight:700;font-size:15px}
+.toc-head span{font-variant-numeric:tabular-nums;background:rgba(255,255,255,.22);border-radius:999px;padding:2px 10px;font-size:12.5px}
+.toc-head.tw{background:var(--info)}.toc-head.tp{background:var(--gold)}.toc-head.so{background:var(--so)}.toc-head.xa{background:var(--accent)}
+.toc-list{list-style:none;margin:0;padding:6px 0;counter-reset:toc}
+.toc-list li{counter-increment:toc;display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:start;padding:9px 16px;border-bottom:1px dashed var(--line)}
+.toc-list li::before{content:counter(toc);font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;font-size:13.5px;padding-top:1px}
+.toc-list .t b{display:block;font-size:14.5px;font-weight:600;line-height:1.4}
+.toc-list .t span{font-size:12.5px;color:var(--muted)}
+.toc-list button,.toc-list a.go{font:inherit;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--accent);cursor:pointer;text-decoration:none;white-space:nowrap}
+.toc-list button:hover,.toc-list a.go:hover{border-color:var(--accent)}
+.toc-list li.pending{grid-template-columns:30px 1fr;color:var(--muted);font-style:italic;font-size:13.5px;border-bottom:0}
+.toc-list li.pending::before{content:"+";color:var(--gold)}
 /* Trình đọc văn bản */
 .reader{position:fixed;inset:0;z-index:50;background:rgba(20,16,12,.72);display:flex;flex-direction:column}
 .reader-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border-bottom:3px solid var(--accent);padding:10px 16px}
@@ -179,7 +205,7 @@ footer b{color:var(--ink)}
 <main><div class="wrap" id="view"></div></main>
 
 <footer><div class="wrap">
-  <div><b>Lưu ý khi sử dụng.</b> Tệp văn bản của Thành phố, văn bản của xã đăng tại đây là bản điện tử có chữ ký, đóng dấu của cơ quan ban hành. Tình trạng hiệu lực của văn bản Trung ương được rà soát đến ngày 14/11/2026; trước khi áp dụng, đề nghị đối chiếu tại Cơ sở dữ liệu quốc gia về văn bản pháp luật (vbpl.vn) hoặc Cổng Pháp luật quốc gia (phapluat.gov.vn).</div>
+  <div><b>Lưu ý khi sử dụng.</b> Tệp văn bản của Thành phố, Sở, ngành và xã đăng tại đây là bản điện tử có chữ ký, đóng dấu của cơ quan ban hành. Tình trạng hiệu lực của văn bản Trung ương được rà soát đến ngày 14/11/2026; trước khi áp dụng, đề nghị đối chiếu tại Cơ sở dữ liệu quốc gia về văn bản pháp luật (vbpl.vn) hoặc Cổng Pháp luật quốc gia (phapluat.gov.vn).</div>
   <div>Trợ giúp pháp lý miễn phí: Tổng đài 1900 6275 (Cổng Pháp luật quốc gia). Phản ánh, kiến nghị về văn bản quy phạm pháp luật: mục “Phản ánh chính sách” trên phapluat.gov.vn, đăng nhập bằng tài khoản VNeID.</div>
   <div><b>Mô hình chuyển đổi số của Phòng Nội vụ - Tư pháp xã Tây Phương.</b> Đơn vị quản lý nội dung: Phòng Nội vụ - Tư pháp, Ủy ban nhân dân xã Tây Phương, thành phố Hà Nội.</div>
   <div class="internal">LƯU HÀNH NỘI BỘ (TRONG THỜI GIAN THỬ NGHIỆM)</div>
@@ -203,50 +229,55 @@ const ICON_SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 /* ===== Văn bản của xã: kế hoạch triển khai đã ký, đóng dấu ===== */
 const XA = [
- {so:"454/KH-UBND",ngay:"15/10/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch hưởng ứng “Ngày Pháp luật nước Cộng hòa xã hội chủ nghĩa Việt Nam” trên địa bàn xã Tây Phương năm 2026",tep:"vb/454-KH-UBND.pdf"},
- {so:"484/KH-UBND",ngay:"03/11/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch tuyên truyền, phổ biến pháp luật và trợ giúp pháp lý cho học sinh các trường trung học phổ thông, trung học cơ sở trên địa bàn xã Tây Phương",tep:"vb/484-KH-UBND.pdf"},
- {so:"483/KH-UBND",ngay:"02/11/2026",linhvuc:"Trẻ em",ten:"Kế hoạch triển khai thực hiện Chương trình thúc đẩy quyền tham gia của trẻ em giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/483-KH-UBND.pdf"},
- {so:"475/KH-UBND",ngay:"29/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch triển khai công tác khám sơ tuyển sức khỏe tuyển chọn, gọi công dân nhập ngũ và tuyển chọn công dân thực hiện nghĩa vụ tham gia Công an nhân dân trên địa bàn xã Tây Phương năm 2027",tep:"vb/475-KH-UBND.pdf"},
- {so:"472/KH-UBND",ngay:"28/10/2026",linhvuc:"Văn hóa",ten:"Kế hoạch tổ chức lễ dâng hương kỷ niệm 413 năm ngày mất danh nhân văn hóa Trạng Bùng Phùng Khắc Khoan (1613 - 2026)",tep:"vb/472-KH-UBND.pdf"},
- {so:"470/KH-UBND",ngay:"26/10/2026",linhvuc:"Bình đẳng giới",ten:"Kế hoạch tổ chức thực hiện Tháng hành động vì bình đẳng giới và phòng ngừa, ứng phó với bạo lực trên cơ sở giới năm 2026 trên địa bàn xã Tây Phương",tep:"vb/470-KH-UBND.pdf"},
- {so:"469/KH-UBND",ngay:"23/10/2026",linhvuc:"Phòng cháy, chữa cháy",ten:"Kế hoạch triển khai Cuộc thi trực tuyến tìm hiểu kiến thức, pháp luật về phòng cháy, chữa cháy và cứu nạn, cứu hộ trên ứng dụng Công dân Thủ đô số (iHanoi) năm 2026 trên địa bàn xã Tây Phương",tep:"vb/469-KH-UBND.pdf"},
- {so:"468/KH-UBND",ngay:"23/10/2026",linhvuc:"Chuyển đổi số",ten:"Kế hoạch tổ chức tập huấn kỹ năng số và ứng dụng công nghệ thông tin cơ bản cho người cao tuổi xã Tây Phương năm 2026",tep:"vb/468-KH-UBND.pdf"},
- {so:"463/KH-UBND",ngay:"21/10/2026",linhvuc:"Địa giới hành chính",ten:"Kế hoạch tổ chức lấy ý kiến Nhân dân đối với Đề án điều chỉnh địa giới đơn vị hành chính giữa thành phố Hà Nội và tỉnh Phú Thọ trên địa bàn xã Tây Phương",tep:"vb/463-KH-UBND.pdf"},
- {so:"462/KH-UBND",ngay:"20/10/2026",linhvuc:"Giáo dục",ten:"Kế hoạch triển khai công tác phòng, chống tai nạn, thương tích trong các cơ sở giáo dục trên địa bàn xã Tây Phương năm học 2026 - 2027",tep:"vb/462-KH-UBND.pdf"},
- {so:"459/KH-UBND",ngay:"20/10/2026",linhvuc:"Y tế",ten:"Kế hoạch triển khai Tuần lễ “Dinh dưỡng và phát triển” năm 2026",tep:"vb/459-KH-UBND.pdf"},
- {so:"458/KH-UBND",ngay:"16/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện năm 2026 trên địa bàn xã Tây Phương",tep:"vb/458-KH-UBND.pdf"},
- {so:"452/KH-UBND",ngay:"14/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/452-KH-UBND.pdf"},
- {so:"449/KH-UBND",ngay:"13/10/2026",linhvuc:"Bảo hiểm xã hội, bảo hiểm y tế",ten:"Kế hoạch thông tin, tuyên truyền chính sách bảo hiểm xã hội, bảo hiểm y tế giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/449-KH-UBND.pdf"},
- {so:"444/KH-UBND",ngay:"05/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch tuyển chọn, gọi công dân nhập ngũ và thực hiện nghĩa vụ tham gia Công an nhân dân năm 2027",tep:"vb/444-KH-UBND.pdf"}
+ {so:"454/KH-UBND",ngan:"Hưởng ứng Ngày Pháp luật Việt Nam năm 2026",ngay:"15/10/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch hưởng ứng “Ngày Pháp luật nước Cộng hòa xã hội chủ nghĩa Việt Nam” trên địa bàn xã Tây Phương năm 2026",tep:"vb/454-KH-UBND.pdf"},
+ {so:"484/KH-UBND",ngan:"Tuyên truyền pháp luật, trợ giúp pháp lý cho học sinh",ngay:"03/11/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch tuyên truyền, phổ biến pháp luật và trợ giúp pháp lý cho học sinh các trường trung học phổ thông, trung học cơ sở trên địa bàn xã Tây Phương",tep:"vb/484-KH-UBND.pdf"},
+ {so:"483/KH-UBND",ngan:"Thúc đẩy quyền tham gia của trẻ em 2026 - 2030",ngay:"02/11/2026",linhvuc:"Trẻ em",ten:"Kế hoạch triển khai thực hiện Chương trình thúc đẩy quyền tham gia của trẻ em giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/483-KH-UBND.pdf"},
+ {so:"475/KH-UBND",ngan:"Khám sơ tuyển sức khỏe nghĩa vụ quân sự, Công an năm 2027",ngay:"29/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch triển khai công tác khám sơ tuyển sức khỏe tuyển chọn, gọi công dân nhập ngũ và tuyển chọn công dân thực hiện nghĩa vụ tham gia Công an nhân dân trên địa bàn xã Tây Phương năm 2027",tep:"vb/475-KH-UBND.pdf"},
+ {so:"472/KH-UBND",ngan:"Lễ dâng hương 413 năm ngày mất Trạng Bùng Phùng Khắc Khoan",ngay:"28/10/2026",linhvuc:"Văn hóa",ten:"Kế hoạch tổ chức lễ dâng hương kỷ niệm 413 năm ngày mất danh nhân văn hóa Trạng Bùng Phùng Khắc Khoan (1613 - 2026)",tep:"vb/472-KH-UBND.pdf"},
+ {so:"470/KH-UBND",ngan:"Tháng hành động vì bình đẳng giới năm 2026",ngay:"26/10/2026",linhvuc:"Bình đẳng giới",ten:"Kế hoạch tổ chức thực hiện Tháng hành động vì bình đẳng giới và phòng ngừa, ứng phó với bạo lực trên cơ sở giới năm 2026 trên địa bàn xã Tây Phương",tep:"vb/470-KH-UBND.pdf"},
+ {so:"469/KH-UBND",ngan:"Cuộc thi tìm hiểu pháp luật PCCC và CNCH trên iHanoi",ngay:"23/10/2026",linhvuc:"Phòng cháy, chữa cháy",ten:"Kế hoạch triển khai Cuộc thi trực tuyến tìm hiểu kiến thức, pháp luật về phòng cháy, chữa cháy và cứu nạn, cứu hộ trên ứng dụng Công dân Thủ đô số (iHanoi) năm 2026 trên địa bàn xã Tây Phương",tep:"vb/469-KH-UBND.pdf"},
+ {so:"468/KH-UBND",ngan:"Tập huấn kỹ năng số cho người cao tuổi năm 2026",ngay:"23/10/2026",linhvuc:"Chuyển đổi số",ten:"Kế hoạch tổ chức tập huấn kỹ năng số và ứng dụng công nghệ thông tin cơ bản cho người cao tuổi xã Tây Phương năm 2026",tep:"vb/468-KH-UBND.pdf"},
+ {so:"463/KH-UBND",ngan:"Lấy ý kiến Nhân dân về điều chỉnh địa giới hành chính",ngay:"21/10/2026",linhvuc:"Địa giới hành chính",ten:"Kế hoạch tổ chức lấy ý kiến Nhân dân đối với Đề án điều chỉnh địa giới đơn vị hành chính giữa thành phố Hà Nội và tỉnh Phú Thọ trên địa bàn xã Tây Phương",tep:"vb/463-KH-UBND.pdf"},
+ {so:"462/KH-UBND",ngan:"Phòng, chống tai nạn thương tích trong trường học 2026 - 2027",ngay:"20/10/2026",linhvuc:"Giáo dục",ten:"Kế hoạch triển khai công tác phòng, chống tai nạn, thương tích trong các cơ sở giáo dục trên địa bàn xã Tây Phương năm học 2026 - 2027",tep:"vb/462-KH-UBND.pdf"},
+ {so:"459/KH-UBND",ngan:"Tuần lễ Dinh dưỡng và phát triển năm 2026",ngay:"20/10/2026",linhvuc:"Y tế",ten:"Kế hoạch triển khai Tuần lễ “Dinh dưỡng và phát triển” năm 2026",tep:"vb/459-KH-UBND.pdf"},
+ {so:"458/KH-UBND",ngan:"An toàn sử dụng điện năm 2026",ngay:"16/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện năm 2026 trên địa bàn xã Tây Phương",tep:"vb/458-KH-UBND.pdf"},
+ {so:"452/KH-UBND",ngan:"An toàn sử dụng điện giai đoạn 2026 - 2030",ngay:"14/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/452-KH-UBND.pdf"},
+ {so:"449/KH-UBND",ngan:"Tuyên truyền chính sách BHXH, BHYT giai đoạn 2026 - 2030",ngay:"13/10/2026",linhvuc:"Bảo hiểm xã hội, bảo hiểm y tế",ten:"Kế hoạch thông tin, tuyên truyền chính sách bảo hiểm xã hội, bảo hiểm y tế giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/449-KH-UBND.pdf"},
+ {so:"444/KH-UBND",ngan:"Tuyển chọn, gọi công dân nhập ngũ năm 2027",ngay:"05/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch tuyển chọn, gọi công dân nhập ngũ và thực hiện nghĩa vụ tham gia Công an nhân dân năm 2027",tep:"vb/444-KH-UBND.pdf"}
 ];
 
 /* ===== Văn bản quy phạm pháp luật của Thành phố ===== */
 const TP = [
- {so:"149/2026/QĐ-UBND",ngay:"22/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"An sinh xã hội",ten:"Quyết định ban hành quy định chuẩn nghèo đa chiều của thành phố Hà Nội giai đoạn 2027 - 2030",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/149-2026-QD-UBND.pdf"},
- {so:"148/2026/QĐ-UBND",ngay:"19/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"Khoa học, công nghệ, chuyển đổi số",ten:"Quyết định quy định trình tự, thủ tục hỗ trợ phát triển hạ tầng và tổ chức có hoạt động trong lĩnh vực khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số trên địa bàn thành phố Hà Nội",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/148-2026-QD-UBND.pdf"},
- {so:"Luật Thủ đô (sửa đổi)",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Thủ đô",ten:"Luật Thủ đô (sửa đổi) năm 2026: cơ chế, chính sách đặc thù cho thành phố Hà Nội",tt:"ok",ttText:"Có hiệu lực từ 01/7/2026",tra:"Luật Thủ đô 2026"}
+ {so:"149/2026/QĐ-UBND",ngan:"Chuẩn nghèo đa chiều thành phố Hà Nội 2027 - 2030",ngay:"22/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"An sinh xã hội",ten:"Quyết định ban hành quy định chuẩn nghèo đa chiều của thành phố Hà Nội giai đoạn 2027 - 2030",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/149-2026-QD-UBND.pdf"},
+ {so:"148/2026/QĐ-UBND",ngan:"Hỗ trợ hạ tầng khoa học, công nghệ, đổi mới sáng tạo, chuyển đổi số",ngay:"19/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"Khoa học, công nghệ, chuyển đổi số",ten:"Quyết định quy định trình tự, thủ tục hỗ trợ phát triển hạ tầng và tổ chức có hoạt động trong lĩnh vực khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số trên địa bàn thành phố Hà Nội",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/148-2026-QD-UBND.pdf"},
+ {so:"Luật Thủ đô (sửa đổi)",ngan:"Luật Thủ đô (sửa đổi) năm 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Thủ đô",ten:"Luật Thủ đô (sửa đổi) năm 2026: cơ chế, chính sách đặc thù cho thành phố Hà Nội",tt:"ok",ttText:"Có hiệu lực từ 01/7/2026",tra:"Luật Thủ đô 2026"}
+];
+
+/* ===== Văn bản của Sở, ngành Thành phố (bổ sung văn bản mới vào danh sách này) ===== */
+const SO = [
+ {so:"8639/HD-SNV",ngay:"10/11/2026",coquan:"Sở Nội vụ thành phố Hà Nội",linhvuc:"Cán bộ, công chức, viên chức",ngan:"Hướng dẫn đánh giá, xếp loại chất lượng năm 2026",ten:"Hướng dẫn đánh giá, xếp loại chất lượng năm 2026 đối với cơ quan hành chính nhà nước, công chức, đơn vị sự nghiệp công lập và viên chức thuộc phạm vi quản lý của Ủy ban nhân dân thành phố Hà Nội",tt:"ok",ttText:"Đã ký, đóng dấu",tep:"vb/8639-HD-SNV.pdf"}
 ];
 
 /* ===== Văn bản Trung ương thường dùng ở cấp xã ===== */
 const TW = [
- {so:"Hiến pháp 2013",ngay:"28/11/2013",coquan:"Quốc hội",linhvuc:"Hiến pháp, bộ máy nhà nước",ten:"Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam năm 2013, được sửa đổi, bổ sung bởi Nghị quyết số 203/2025/QH15 ngày 16/6/2025 (chính quyền địa phương hai cấp; Mặt trận Tổ quốc, Công đoàn)",tt:"ok",ttText:"Đang có hiệu lực",tra:"Hiến pháp 2013 Nghị quyết 203/2025/QH15"},
- {so:"72/2025/QH15",ngay:"16/6/2025",coquan:"Quốc hội",linhvuc:"Hiến pháp, bộ máy nhà nước",ten:"Luật Tổ chức chính quyền địa phương: tổ chức chính quyền địa phương ở cấp tỉnh và cấp xã",tt:"ok",ttText:"Đang có hiệu lực",link:"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2025_807-808_72-2025-qh15..pdf",linkText:"Bản Công báo (PDF)"},
- {so:"64/2025/QH15",ngay:"19/02/2025",coquan:"Quốc hội",linhvuc:"Xây dựng, kiểm tra văn bản",ten:"Luật Ban hành văn bản quy phạm pháp luật, được sửa đổi, bổ sung bởi Luật số 87/2025/QH15 ngày 25/6/2025",tt:"ok",ttText:"Đang có hiệu lực",tra:"Luật 64/2025/QH15"},
- {so:"60/2014/QH13",ngay:"20/11/2014",coquan:"Quốc hội",linhvuc:"Hộ tịch",ten:"Luật Hộ tịch năm 2014. Luật Hộ tịch (sửa đổi) đã được Quốc hội thông qua ngày 23/4/2026, có hiệu lực từ 01/3/2027 và thay thế Luật này",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Hộ tịch 60/2014/QH13"},
- {so:"Luật Hộ tịch (sửa đổi) 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Hộ tịch",ten:"Luật Hộ tịch (sửa đổi): công nhận giá trị pháp lý của dữ liệu hộ tịch điện tử; Chủ tịch UBND cấp xã có thẩm quyền ký giấy tờ hộ tịch",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Hộ tịch sửa đổi 2026"},
- {so:"23/2015/NĐ-CP",ngay:"16/02/2015",coquan:"Chính phủ",linhvuc:"Chứng thực",ten:"Nghị định về cấp bản sao từ sổ gốc, chứng thực bản sao từ bản chính, chứng thực chữ ký và chứng thực hợp đồng, giao dịch; được sửa đổi, bổ sung bởi Nghị định số 07/2025/NĐ-CP và Nghị định số 280/2025/NĐ-CP (hiệu lực 01/11/2025)",tt:"ok",ttText:"Đang có hiệu lực",link:"https://www.moj.gov.vn/vbpq/Lists/Vn%20bn%20php%20lut/Attachments/30394/VanBanGoc_23.2015.ND.CP.pdf",linkText:"Văn bản gốc (Bộ Tư pháp)"},
- {so:"280/2025/NĐ-CP",ngay:"27/10/2025",coquan:"Chính phủ",linhvuc:"Chứng thực",ten:"Nghị định sửa đổi, bổ sung một số điều của Nghị định số 23/2015/NĐ-CP: không yêu cầu xuất trình giấy tờ đã tích hợp trên VNeID khi chứng thực; mở rộng thẩm quyền chứng thực của cấp xã",tt:"ok",ttText:"Có hiệu lực từ 01/11/2025",tra:"Nghị định 280/2025/NĐ-CP"},
- {so:"35/2013/QH13",ngay:"20/6/2013",coquan:"Quốc hội",linhvuc:"Hòa giải ở cơ sở",ten:"Luật Hòa giải ở cơ sở năm 2013. Luật Hòa giải ở cơ sở (sửa đổi) đã được Quốc hội thông qua tháng 8/2026, có hiệu lực từ 01/3/2027",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Hòa giải ở cơ sở 35/2013/QH13"},
- {so:"Luật Hòa giải ở cơ sở (sửa đổi) 2026",ngay:"8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Hòa giải ở cơ sở",ten:"Luật Hòa giải ở cơ sở (sửa đổi), gồm 5 chương, 35 điều: bổ sung cơ chế chỉ định hòa giải viên, ứng dụng công nghệ thông tin trong hòa giải",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Hòa giải ở cơ sở sửa đổi 2026"},
- {so:"14/2012/QH13",ngay:"20/6/2012",coquan:"Quốc hội",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Luật Phổ biến, giáo dục pháp luật năm 2012. Luật Phổ biến, giáo dục pháp luật (sửa đổi) đã được Quốc hội thông qua ngày 23/8/2026, có hiệu lực từ 01/3/2027",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Phổ biến giáo dục pháp luật 14/2012/QH13"},
- {so:"Luật PBGDPL (sửa đổi) 2026",ngay:"23/8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Luật Phổ biến, giáo dục pháp luật (sửa đổi): Cổng Pháp luật quốc gia là nền tảng số dùng chung; Hội đồng phối hợp phổ biến, giáo dục pháp luật ở cấp xã; truyền thông chính sách",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Phổ biến giáo dục pháp luật sửa đổi 2026"},
- {so:"31/2024/QH15",ngay:"18/01/2024",coquan:"Quốc hội",linhvuc:"Đất đai",ten:"Luật Đất đai năm 2024, đã được sửa đổi, bổ sung bởi nhiều luật (văn bản hợp nhất số 44/VBHN-VPQH)",tt:"ok",ttText:"Đang có hiệu lực",tra:"Luật Đất đai 31/2024/QH15"},
- {so:"Luật Tín ngưỡng, tôn giáo (sửa đổi) 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Tín ngưỡng, tôn giáo",ten:"Luật Tín ngưỡng, tôn giáo (sửa đổi), thay thế Luật Tín ngưỡng, tôn giáo năm 2016",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật Tín ngưỡng tôn giáo sửa đổi 2026"},
- {so:"Luật Tiếp cận thông tin (sửa đổi) 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Tiếp cận thông tin",ten:"Luật Tiếp cận thông tin (sửa đổi): quyền yêu cầu cơ quan nhà nước cung cấp thông tin",tt:"ok",ttText:"Có hiệu lực từ 01/9/2026",tra:"Luật Tiếp cận thông tin sửa đổi 2026"},
- {so:"Luật sửa đổi Luật Thi đua, khen thưởng",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Thi đua, khen thưởng",ten:"Luật sửa đổi, bổ sung một số điều của Luật Thi đua, khen thưởng (4 điều) sau sắp xếp tổ chức bộ máy",tt:"ok",ttText:"Có hiệu lực từ 01/10/2026",tra:"Luật sửa đổi Luật Thi đua khen thưởng 2026"},
- {so:"Luật sửa đổi Luật Trợ giúp pháp lý",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Trợ giúp pháp lý",ten:"Luật sửa đổi, bổ sung một số điều của Luật Trợ giúp pháp lý",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật sửa đổi Luật Trợ giúp pháp lý 2026"},
- {so:"Luật sửa đổi Luật Công chứng",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Công chứng",ten:"Luật sửa đổi, bổ sung một số điều của Luật Công chứng",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật sửa đổi Luật Công chứng 2026"},
- {so:"14/2026/QH16",ngay:"23/8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Quốc phòng, an ninh",ten:"Luật sửa đổi, bổ sung một số điều của 09 luật về quân sự, quốc phòng",tt:"ok",ttText:"Có hiệu lực từ 01/9/2026",tra:"Luật 14/2026/QH16"}
+ {so:"Hiến pháp 2013",ngan:"Hiến pháp năm 2013 (sửa đổi, bổ sung năm 2025)",ngay:"28/11/2013",coquan:"Quốc hội",linhvuc:"Hiến pháp, bộ máy nhà nước",ten:"Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam năm 2013, được sửa đổi, bổ sung bởi Nghị quyết số 203/2025/QH15 ngày 16/6/2025 (chính quyền địa phương hai cấp; Mặt trận Tổ quốc, Công đoàn)",tt:"ok",ttText:"Đang có hiệu lực",tra:"Hiến pháp 2013 Nghị quyết 203/2025/QH15"},
+ {so:"72/2025/QH15",ngan:"Luật Tổ chức chính quyền địa phương",ngay:"16/6/2025",coquan:"Quốc hội",linhvuc:"Hiến pháp, bộ máy nhà nước",ten:"Luật Tổ chức chính quyền địa phương: tổ chức chính quyền địa phương ở cấp tỉnh và cấp xã",tt:"ok",ttText:"Đang có hiệu lực",link:"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2025_807-808_72-2025-qh15..pdf",linkText:"Bản Công báo (PDF)"},
+ {so:"64/2025/QH15",ngan:"Luật Ban hành văn bản quy phạm pháp luật",ngay:"19/02/2025",coquan:"Quốc hội",linhvuc:"Xây dựng, kiểm tra văn bản",ten:"Luật Ban hành văn bản quy phạm pháp luật, được sửa đổi, bổ sung bởi Luật số 87/2025/QH15 ngày 25/6/2025",tt:"ok",ttText:"Đang có hiệu lực",tra:"Luật 64/2025/QH15"},
+ {so:"60/2014/QH13",ngan:"Luật Hộ tịch năm 2014",ngay:"20/11/2014",coquan:"Quốc hội",linhvuc:"Hộ tịch",ten:"Luật Hộ tịch năm 2014. Luật Hộ tịch (sửa đổi) đã được Quốc hội thông qua ngày 23/4/2026, có hiệu lực từ 01/3/2027 và thay thế Luật này",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Hộ tịch 60/2014/QH13"},
+ {so:"Luật Hộ tịch (sửa đổi) 2026",ngan:"Luật Hộ tịch (sửa đổi) năm 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Hộ tịch",ten:"Luật Hộ tịch (sửa đổi): công nhận giá trị pháp lý của dữ liệu hộ tịch điện tử; Chủ tịch UBND cấp xã có thẩm quyền ký giấy tờ hộ tịch",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Hộ tịch sửa đổi 2026"},
+ {so:"23/2015/NĐ-CP",ngan:"Nghị định về chứng thực",ngay:"16/02/2015",coquan:"Chính phủ",linhvuc:"Chứng thực",ten:"Nghị định về cấp bản sao từ sổ gốc, chứng thực bản sao từ bản chính, chứng thực chữ ký và chứng thực hợp đồng, giao dịch; được sửa đổi, bổ sung bởi Nghị định số 07/2025/NĐ-CP và Nghị định số 280/2025/NĐ-CP (hiệu lực 01/11/2025)",tt:"ok",ttText:"Đang có hiệu lực",link:"https://www.moj.gov.vn/vbpq/Lists/Vn%20bn%20php%20lut/Attachments/30394/VanBanGoc_23.2015.ND.CP.pdf",linkText:"Văn bản gốc (Bộ Tư pháp)"},
+ {so:"280/2025/NĐ-CP",ngan:"Nghị định sửa đổi Nghị định về chứng thực",ngay:"27/10/2025",coquan:"Chính phủ",linhvuc:"Chứng thực",ten:"Nghị định sửa đổi, bổ sung một số điều của Nghị định số 23/2015/NĐ-CP: không yêu cầu xuất trình giấy tờ đã tích hợp trên VNeID khi chứng thực; mở rộng thẩm quyền chứng thực của cấp xã",tt:"ok",ttText:"Có hiệu lực từ 01/11/2025",tra:"Nghị định 280/2025/NĐ-CP"},
+ {so:"35/2013/QH13",ngan:"Luật Hòa giải ở cơ sở năm 2013",ngay:"20/6/2013",coquan:"Quốc hội",linhvuc:"Hòa giải ở cơ sở",ten:"Luật Hòa giải ở cơ sở năm 2013. Luật Hòa giải ở cơ sở (sửa đổi) đã được Quốc hội thông qua tháng 8/2026, có hiệu lực từ 01/3/2027",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Hòa giải ở cơ sở 35/2013/QH13"},
+ {so:"Luật Hòa giải ở cơ sở (sửa đổi) 2026",ngan:"Luật Hòa giải ở cơ sở (sửa đổi) năm 2026",ngay:"8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Hòa giải ở cơ sở",ten:"Luật Hòa giải ở cơ sở (sửa đổi), gồm 5 chương, 35 điều: bổ sung cơ chế chỉ định hòa giải viên, ứng dụng công nghệ thông tin trong hòa giải",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Hòa giải ở cơ sở sửa đổi 2026"},
+ {so:"14/2012/QH13",ngan:"Luật Phổ biến, giáo dục pháp luật năm 2012",ngay:"20/6/2012",coquan:"Quốc hội",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Luật Phổ biến, giáo dục pháp luật năm 2012. Luật Phổ biến, giáo dục pháp luật (sửa đổi) đã được Quốc hội thông qua ngày 23/8/2026, có hiệu lực từ 01/3/2027",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Phổ biến giáo dục pháp luật 14/2012/QH13"},
+ {so:"Luật PBGDPL (sửa đổi) 2026",ngan:"Luật Phổ biến, giáo dục pháp luật (sửa đổi) năm 2026",ngay:"23/8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Luật Phổ biến, giáo dục pháp luật (sửa đổi): Cổng Pháp luật quốc gia là nền tảng số dùng chung; Hội đồng phối hợp phổ biến, giáo dục pháp luật ở cấp xã; truyền thông chính sách",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Phổ biến giáo dục pháp luật sửa đổi 2026"},
+ {so:"31/2024/QH15",ngan:"Luật Đất đai năm 2024",ngay:"18/01/2024",coquan:"Quốc hội",linhvuc:"Đất đai",ten:"Luật Đất đai năm 2024, đã được sửa đổi, bổ sung bởi nhiều luật (văn bản hợp nhất số 44/VBHN-VPQH)",tt:"ok",ttText:"Đang có hiệu lực",tra:"Luật Đất đai 31/2024/QH15"},
+ {so:"Luật Tín ngưỡng, tôn giáo (sửa đổi) 2026",ngan:"Luật Tín ngưỡng, tôn giáo (sửa đổi) năm 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Tín ngưỡng, tôn giáo",ten:"Luật Tín ngưỡng, tôn giáo (sửa đổi), thay thế Luật Tín ngưỡng, tôn giáo năm 2016",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật Tín ngưỡng tôn giáo sửa đổi 2026"},
+ {so:"Luật Tiếp cận thông tin (sửa đổi) 2026",ngan:"Luật Tiếp cận thông tin (sửa đổi) năm 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Tiếp cận thông tin",ten:"Luật Tiếp cận thông tin (sửa đổi): quyền yêu cầu cơ quan nhà nước cung cấp thông tin",tt:"ok",ttText:"Có hiệu lực từ 01/9/2026",tra:"Luật Tiếp cận thông tin sửa đổi 2026"},
+ {so:"Luật sửa đổi Luật Thi đua, khen thưởng",ngan:"Luật sửa đổi Luật Thi đua, khen thưởng",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Thi đua, khen thưởng",ten:"Luật sửa đổi, bổ sung một số điều của Luật Thi đua, khen thưởng (4 điều) sau sắp xếp tổ chức bộ máy",tt:"ok",ttText:"Có hiệu lực từ 01/10/2026",tra:"Luật sửa đổi Luật Thi đua khen thưởng 2026"},
+ {so:"Luật sửa đổi Luật Trợ giúp pháp lý",ngan:"Luật sửa đổi Luật Trợ giúp pháp lý",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Trợ giúp pháp lý",ten:"Luật sửa đổi, bổ sung một số điều của Luật Trợ giúp pháp lý",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật sửa đổi Luật Trợ giúp pháp lý 2026"},
+ {so:"Luật sửa đổi Luật Công chứng",ngan:"Luật sửa đổi Luật Công chứng",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Công chứng",ten:"Luật sửa đổi, bổ sung một số điều của Luật Công chứng",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật sửa đổi Luật Công chứng 2026"},
+ {so:"14/2026/QH16",ngan:"Luật sửa đổi 09 luật về quân sự, quốc phòng",ngay:"23/8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Quốc phòng, an ninh",ten:"Luật sửa đổi, bổ sung một số điều của 09 luật về quân sự, quốc phòng",tt:"ok",ttText:"Có hiệu lực từ 01/9/2026",tra:"Luật 14/2026/QH16"}
 ];
 
 /* ===== Cổng tra cứu ===== */
@@ -274,7 +305,9 @@ const PORTALS = [
 ];
 
 const TABS=[
+ {id:"muc-luc",label:"Mục lục",data:()=>null},
  {id:"xa",label:"Văn bản của xã",data:()=>XA},
+ {id:"so-nganh",label:"Văn bản Sở, ngành",data:()=>SO},
  {id:"thanh-pho",label:"Văn bản Thành phố",data:()=>TP},
  {id:"trung-uong",label:"Văn bản Trung ương",data:()=>TW},
  {id:"cong-tra-cuu",label:"Cổng tra cứu",data:()=>null},
@@ -285,7 +318,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d");
 const searchUrl=t=>"https://www.google.com/search?q="+encodeURIComponent(t+" site:vbpl.vn OR site:phapluat.gov.vn OR site:chinhphu.vn");
 
-function current(){const h=location.hash.replace("#","");return TABS.find(t=>t.id===h)?h:"xa"}
+function current(){const h=location.hash.replace("#","");return TABS.find(t=>t.id===h)?h:"muc-luc"}
 
 function renderTabs(){
   const cur=current();
@@ -294,22 +327,23 @@ function renderTabs(){
     return `<a href="#${t.id}" ${t.id===cur?'aria-current="page"':""}>${t.label}${n}</a>`}).join("");
 }
 function renderStats(){
-  const files=[...XA,...TP].filter(x=>x.tep).length;
+  const files=[...XA,...SO,...TP].filter(x=>x.tep).length;
   document.getElementById("stats").innerHTML=
    `<div class="stat"><b>${XA.length}</b>kế hoạch của xã</div>`+
+   `<div class="stat"><b>${SO.length}</b>văn bản Sở, ngành</div>`+
    `<div class="stat"><b>${TP.length}</b>văn bản Thành phố</div>`+
    `<div class="stat"><b>${TW.length}</b>văn bản Trung ương</div>`+
    `<div class="stat"><b>${files}</b>tệp có chữ ký, đóng dấu</div>`+
    `<div class="stat"><b>${PORTALS.reduce((a,g)=>a+g.items.length,0)}</b>cổng tra cứu chính thống</div>`;
 }
 function fillFields(){
-  const s=new Set([...XA,...TP,...TW].map(x=>x.linhvuc));
+  const s=new Set([...XA,...SO,...TP,...TW].map(x=>x.linhvuc));
   const sel=document.getElementById("field");
   [...s].sort((a,b)=>a.localeCompare(b,"vi")).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;sel.appendChild(o)});
 }
 
 function card(x,kind){
-  const cls=kind==="xa"?"":(kind==="tp"?"tp":"tw");
+  const cls=kind==="xa"?"":kind;
   const status=kind==="xa"?`<span class="pill ok">Đã ký, đóng dấu</span>`:`<span class="pill ${x.tt}">${esc(x.ttText)}</span>`;
   const issuer=kind==="xa"?"UBND xã Tây Phương":x.coquan;
   let btns="";
@@ -325,6 +359,11 @@ function card(x,kind){
   </article>`;
 }
 
+function shortTitle(t){
+  t=t.replace(/^(Kế hoạch|Quyết định|Luật|Nghị định|Hướng dẫn)\s+/,m=>m);
+  const cut=t.split(/[:;]|, được sửa đổi| trên địa bàn xã Tây Phương| trên địa bàn thành phố Hà Nội/)[0];
+  return cut.length>110?cut.slice(0,107).replace(/\s+\S*$/,"")+"…":cut;
+}
 function filterList(list){
   const q=norm(document.getElementById("q").value.trim());
   const f=document.getElementById("field").value;
@@ -333,6 +372,7 @@ function filterList(list){
 
 const HEAD={
  "xa":["Văn bản của xã Tây Phương","Các kế hoạch triển khai do UBND xã ban hành, bản điện tử đã ký số và đóng dấu. Bấm “Đọc văn bản” để mở toàn văn."],
+ "so-nganh":["Văn bản của các Sở, ngành Thành phố","Văn bản hướng dẫn của các Sở, ngành thành phố Hà Nội gửi UBND các xã, phường, bản điện tử có chữ ký, đóng dấu. Văn bản mới tiếp tục được bổ sung."],
  "thanh-pho":["Văn bản của thành phố Hà Nội","Văn bản quy phạm pháp luật của UBND Thành phố có tệp đính kèm, và Luật Thủ đô. Văn bản khác tra cứu tại Công báo thành phố Hà Nội."],
  "trung-uong":["Văn bản Trung ương thường dùng ở cấp xã","Hiến pháp, luật, nghị định về chính quyền địa phương, hộ tịch, chứng thực, hòa giải ở cơ sở, phổ biến pháp luật, đất đai và các luật mới thông qua năm 2026."]
 };
@@ -344,6 +384,24 @@ function renderView(){
   if(cur==="cong-tra-cuu"){
     v.innerHTML=`<div class="section-head"><div><h2>Cổng tra cứu chính thống</h2><p>Đường dẫn tới các cổng thông tin của Quốc hội, Chính phủ, Bộ Tư pháp, thành phố Hà Nội và xã Tây Phương.</p></div></div>`+
      PORTALS.map(g=>`<div class="portal-group"><h3>${g.nhom}</h3><div class="portals">${g.items.map(p=>`<a class="portal" href="${p.url}" target="_blank" rel="noopener"><b>${esc(p.ten)}</b><code>${p.url.replace("https://","")}</code><span>${esc(p.mota)}</span></a>`).join("")}</div></div>`).join("");
+    return;
+  }
+  if(cur==="muc-luc"){
+    const groups=[
+     {k:"tw",tab:"trung-uong",ten:"Văn bản Trung ương",list:TW},
+     {k:"tp",tab:"thanh-pho",ten:"Văn bản Thành phố",list:TP},
+     {k:"so",tab:"so-nganh",ten:"Văn bản Sở, ngành",list:SO},
+     {k:"xa",tab:"xa",ten:"Văn bản của xã Tây Phương",list:XA}];
+    const total=groups.reduce((a,g)=>a+g.list.length,0);
+    const item=x=>{
+      const short=x.ngan||shortTitle(x.ten);
+      const act=x.tep?`<button type="button" data-file="${x.tep}" data-code="${esc(x.so)}" data-title="${esc(x.ten)}">Đọc</button>`
+        :`<a class="go" href="${x.link||searchUrl(x.tra||x.so)}" target="_blank" rel="noopener">Tra cứu</a>`;
+      return `<li><div class="t"><b>${esc(short)}</b><span>${esc(x.so)} · ${esc(x.ngay)}</span></div>${act}</li>`;};
+    v.innerHTML=`<div class="toc-banner"><small>Ủy ban nhân dân xã Tây Phương</small><h2>Mục lục Tủ sách pháp luật</h2>
+      <p>${total} văn bản xếp theo cấp ban hành: Trung ương, Thành phố, Sở, ngành và xã. Bấm “Đọc” để mở toàn văn, bấm “Tra cứu” để mở nguồn chính thống.</p>
+      <div class="toc-count">${groups.map(g=>`<a href="#${g.tab}">${g.ten}: ${g.list.length}</a>`).join("")}</div></div>
+      <div class="toc-grid">${groups.map(g=>{const l=filterList(g.list);return `<section class="toc-panel"><div class="toc-head ${g.k}">${g.ten}<span>${l.length}</span></div><ol class="toc-list">${l.map(item).join("")}<li class="pending">Đang cập nhật, tiếp tục bổ sung văn bản mới</li></ol></section>`}).join("")}</div>`;
     return;
   }
   if(cur==="huong-dan"){
@@ -358,7 +416,7 @@ function renderView(){
     return;
   }
   const tab=TABS.find(t=>t.id===cur);const list=filterList(tab.data());
-  const kind=cur==="xa"?"xa":(cur==="thanh-pho"?"tp":"tw");
+  const kind={"xa":"xa","so-nganh":"so","thanh-pho":"tp","trung-uong":"tw"}[cur];
   const [h,p]=HEAD[cur];
   let note="";
   if(cur==="trung-uong") note=`<div class="note"><b>Tình trạng hiệu lực rà soát đến 14/11/2026.</b> Một số luật mới do Quốc hội khóa XVI thông qua năm 2026 chưa có hiệu lực; trong thời gian đó vẫn áp dụng luật hiện hành.</div>`;
