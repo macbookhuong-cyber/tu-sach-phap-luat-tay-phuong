@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tủ sách pháp luật xã Tây Phương</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Bố cục: dải quốc hiệu, ô tìm kiếm trung tâm, thanh chuyên mục, lưới thẻ văn bản kiểu "phiếu thư viện" có lề đỏ */
+  --bg:#f6f4f1;
+  --surface:#ffffff;
+  --ink:#1f1c1a;
+  --muted:#6a625c;
+  --line:#e3ddd6;
+  --accent:#a3201c;
+  --accent-soft:#f6e3e1;
+  --gold:#b3862b;
+  --ok:#1f7a4d; --ok-bg:#e3f2ea;
+  --warn:#9a5b00; --warn-bg:#fbefd9;
+  --info:#24548f; --info-bg:#e4edf8;
+  --font-display:"Noto Serif", Georgia, "Times New Roman", serif;
+  --font-body:"Be Vietnam Pro", "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16130f; --surface:#211d19; --ink:#f1ece6; --muted:#a99f96; --line:#3a332d;
+    --accent:#e2645d; --accent-soft:#3a1c1a; --gold:#d4a952;
+    --ok:#6fd0a0; --ok-bg:#16301f; --warn:#f0b65a; --warn-bg:#352611; --info:#8db7ee; --info-bg:#172535;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16130f; --surface:#211d19; --ink:#f1ece6; --muted:#a99f96; --line:#3a332d;
+  --accent:#e2645d; --accent-soft:#3a1c1a; --gold:#d4a952;
+  --ok:#6fd0a0; --ok-bg:#16301f; --warn:#f0b65a; --warn-bg:#352611; --info:#8db7ee; --info-bg:#172535;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15.5px;line-height:1.55}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* Dải đầu trang */
+.topbar{background:var(--accent);color:#fff;font-size:13px;letter-spacing:.02em}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:7px;padding-bottom:7px}
+header.masthead{background:var(--surface);border-bottom:1px solid var(--line)}
+header.masthead .wrap{display:flex;align-items:center;gap:18px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
+.emblem{flex:none;width:58px;height:58px;border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 0 0 3px var(--gold) inset}
+.emblem svg{width:30px;height:30px}
+.org small{display:block;font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.org h1{font-family:var(--font-display);font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:2px 0 0;color:var(--accent);text-wrap:balance}
+.org p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.badge{display:inline-block;margin-top:8px;padding:4px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--gold);font-weight:700;font-size:13.5px}
+
+/* Tìm kiếm */
+.searchband{background:linear-gradient(180deg,var(--accent-soft),var(--bg));padding:26px 0 18px}
+.searchbox{display:flex;gap:10px;flex-wrap:wrap}
+.searchbox label{position:absolute;left:-9999px}
+.searchbox input{flex:1 1 320px;font:inherit;font-size:16px;padding:14px 16px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.searchbox input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.searchbox select{font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:13.5px;color:var(--muted)}
+.stat b{color:var(--ink);font-variant-numeric:tabular-nums;font-size:16px;margin-right:4px}
+
+/* Chuyên mục */
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+nav.tabs a{flex:none;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.tabs a[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:#fff}
+nav.tabs a .n{font-variant-numeric:tabular-nums;opacity:.75;margin-left:6px;font-weight:500}
+
+main{padding:22px 0 40px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.section-head h2{font-family:var(--font-display);font-size:24px;margin:0;text-wrap:balance}
+.section-head p{margin:4px 0 0;color:var(--muted);max-width:70ch;font-size:14.5px}
+.note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--muted);margin-bottom:16px;max-width:none}
+.note b{color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:9px}
+.card.tw{border-left-color:var(--info)}
+.card.tp{border-left-color:var(--gold)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.code{font-weight:700;font-size:14px;color:var(--accent);font-variant-numeric:tabular-nums}
+.card.tw .code{color:var(--info)}
+.card.tp .code{color:var(--gold)}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-weight:600;font-size:12px;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.ok{color:var(--ok);background:var(--ok-bg)}
+.pill.warn{color:var(--warn);background:var(--warn-bg)}
+.pill.info{color:var(--info);background:var(--info-bg)}
+.tag{padding:2px 8px;border-radius:6px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.card h3{margin:0;font-size:15.5px;line-height:1.45;font-weight:600}
+.card .desc{margin:0;color:var(--muted);font-size:13.5px}
+.card .issuer{font-size:13px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.btn{cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:13.5px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);background:var(--bg)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.08);color:#fff}
+.btn svg{width:15px;height:15px;flex:none}
+.empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+
+/* Cổng tra cứu */
+.portal-group{margin-bottom:22px}
+.portal-group h3{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}
+.portals{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.portal{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.portal:hover{border-color:var(--accent)}
+.portal b{font-size:15px}
+.portal span{font-size:13px;color:var(--muted)}
+.portal code{font-size:12.5px;color:var(--accent);font-family:var(--font-body);font-weight:600}
+
+.guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:8px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.step .k{font-family:var(--font-display);color:var(--accent);font-size:22px;font-weight:700}
+.step p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.step b{color:var(--ink)}
+
+footer{border-top:1px solid var(--line);background:var(--surface);font-size:13.5px;color:var(--muted)}
+footer .wrap{padding-top:20px;padding-bottom:24px;display:grid;gap:8px}
+footer b{color:var(--ink)}
+.hidden{display:none !important}
+/* Trình đọc văn bản */
+.reader{position:fixed;inset:0;z-index:50;background:rgba(20,16,12,.72);display:flex;flex-direction:column}
+.reader-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border-bottom:3px solid var(--accent);padding:10px 16px}
+.reader-bar .t{flex:1 1 260px;min-width:0}
+.reader-bar .t b{display:block;color:var(--accent);font-size:14px}
+.reader-bar .t span{display:block;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reader-bar button{font:inherit;font-weight:600;font-size:13.5px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.reader-bar button.close{background:var(--accent);border-color:var(--accent);color:#fff}
+.reader-pages{flex:1;overflow:auto;padding:18px 12px 40px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.reader-pages canvas{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);max-width:100%;height:auto}
+.reader-msg{color:#fff;font-size:15px;padding:30px;text-align:center}
+.reader-msg a{color:#f4d27a}
+@media (max-width:480px){.grid,.portals{grid-template-columns:1fr}.searchbox select{flex:1 1 100%}}
+@media (prefers-reduced-motion:no-preference){.card,.portal,.btn{transition:border-color .15s,color .15s}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM — Độc lập - Tự do - Hạnh phúc</span><span>Cập nhật ngày 14/11/2026</span></div></div>
+
+<header class="masthead"><div class="wrap">
+  <div class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#f4d27a" d="M12 2.5l2.47 6.2 6.65.4-5.13 4.25 1.66 6.45L12 16.2l-5.65 3.6 1.66-6.45L2.88 9.1l6.65-.4z"/></svg></div>
+  <div class="org">
+    <small>Ủy ban nhân dân xã Tây Phương · Thành phố Hà Nội</small>
+    <h1>Tủ sách pháp luật điện tử</h1>
+    <div class="badge">Mô hình chuyển đổi số của Phòng Nội vụ - Tư pháp xã Tây Phương</div>
+    <p>Văn bản của xã, của Thành phố, của Trung ương và đường dẫn tới các cổng tra cứu chính thống. Phòng Nội vụ - Tư pháp quản lý, cập nhật.</p>
+  </div>
+</div></header>
+
+<section class="searchband" aria-label="Tìm kiếm văn bản"><div class="wrap">
+  <form class="searchbox" id="searchForm" role="search">
+    <label for="q">Tìm văn bản</label>
+    <input id="q" type="search" placeholder="Nhập số hiệu hoặc từ khóa, ví dụ: hộ tịch, chứng thực, 454/KH-UBND" autocomplete="off">
+    <label for="field">Lĩnh vực</label>
+    <select id="field"><option value="">Tất cả lĩnh vực</option></select>
+  </form>
+  <div class="stats" id="stats"></div>
+</div></section>
+
+<nav class="tabs" aria-label="Chuyên mục"><div class="wrap" id="tabs"></div></nav>
+
+<main><div class="wrap" id="view"></div></main>
+
+<footer><div class="wrap">
+  <div><b>Lưu ý khi sử dụng.</b> Tệp văn bản của xã và của Thành phố đăng tại đây là bản điện tử có chữ ký, đóng dấu của cơ quan ban hành. Tình trạng hiệu lực của văn bản Trung ương được rà soát đến ngày 14/11/2026; trước khi áp dụng, đề nghị đối chiếu tại Cơ sở dữ liệu quốc gia về văn bản pháp luật (vbpl.vn) hoặc Cổng Pháp luật quốc gia (phapluat.gov.vn).</div>
+  <div>Trợ giúp pháp lý miễn phí: Tổng đài 1900 6275 (Cổng Pháp luật quốc gia). Phản ánh, kiến nghị về văn bản quy phạm pháp luật: mục “Phản ánh chính sách” trên phapluat.gov.vn, đăng nhập bằng tài khoản VNeID.</div>
+  <div><b>Mô hình chuyển đổi số của Phòng Nội vụ - Tư pháp xã Tây Phương.</b> Đơn vị quản lý nội dung: Phòng Nội vụ - Tư pháp, Ủy ban nhân dân xã Tây Phương, thành phố Hà Nội.</div>
+</div></footer>
+
+<div class="reader hidden" id="reader" role="dialog" aria-modal="true" aria-labelledby="readerCode">
+  <div class="reader-bar">
+    <div class="t"><b id="readerCode"></b><span id="readerTitle"></span></div>
+    <button type="button" id="zoomOut" aria-label="Thu nhỏ">−</button>
+    <button type="button" id="zoomIn" aria-label="Phóng to">+</button>
+    <button type="button" class="close" id="readerClose">Đóng</button>
+  </div>
+  <div class="reader-pages" id="readerPages"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+<script>
+const ICON_PDF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>';
+const ICON_LINK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+const ICON_SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
+
+/* ===== Văn bản của xã: kế hoạch triển khai đã ký, đóng dấu ===== */
+const XA = [
+ {so:"454/KH-UBND",ngay:"15/10/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch hưởng ứng “Ngày Pháp luật nước Cộng hòa xã hội chủ nghĩa Việt Nam” trên địa bàn xã Tây Phương năm 2026",tep:"vb/454-KH-UBND.pdf"},
+ {so:"484/KH-UBND",ngay:"03/11/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch tuyên truyền, phổ biến pháp luật và trợ giúp pháp lý cho học sinh các trường trung học phổ thông, trung học cơ sở trên địa bàn xã Tây Phương",tep:"vb/484-KH-UBND.pdf"},
+ {so:"483/KH-UBND",ngay:"02/11/2026",linhvuc:"Trẻ em",ten:"Kế hoạch triển khai thực hiện Chương trình thúc đẩy quyền tham gia của trẻ em giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/483-KH-UBND.pdf"},
+ {so:"475/KH-UBND",ngay:"29/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch triển khai công tác khám sơ tuyển sức khỏe tuyển chọn, gọi công dân nhập ngũ và tuyển chọn công dân thực hiện nghĩa vụ tham gia Công an nhân dân trên địa bàn xã Tây Phương năm 2027",tep:"vb/475-KH-UBND.pdf"},
+ {so:"472/KH-UBND",ngay:"28/10/2026",linhvuc:"Văn hóa",ten:"Kế hoạch tổ chức lễ dâng hương kỷ niệm 413 năm ngày mất danh nhân văn hóa Trạng Bùng Phùng Khắc Khoan (1613 - 2026)",tep:"vb/472-KH-UBND.pdf"},
+ {so:"470/KH-UBND",ngay:"26/10/2026",linhvuc:"Bình đẳng giới",ten:"Kế hoạch tổ chức thực hiện Tháng hành động vì bình đẳng giới và phòng ngừa, ứng phó với bạo lực trên cơ sở giới năm 2026 trên địa bàn xã Tây Phương",tep:"vb/470-KH-UBND.pdf"},
+ {so:"469/KH-UBND",ngay:"23/10/2026",linhvuc:"Phòng cháy, chữa cháy",ten:"Kế hoạch triển khai Cuộc thi trực tuyến tìm hiểu kiến thức, pháp luật về phòng cháy, chữa cháy và cứu nạn, cứu hộ trên ứng dụng Công dân Thủ đô số (iHanoi) năm 2026 trên địa bàn xã Tây Phương",tep:"vb/469-KH-UBND.pdf"},
+ {so:"468/KH-UBND",ngay:"23/10/2026",linhvuc:"Chuyển đổi số",ten:"Kế hoạch tổ chức tập huấn kỹ năng số và ứng dụng công nghệ thông tin cơ bản cho người cao tuổi xã Tây Phương năm 2026",tep:"vb/468-KH-UBND.pdf"},
+ {so:"463/KH-UBND",ngay:"21/10/2026",linhvuc:"Địa giới hành chính",ten:"Kế hoạch tổ chức lấy ý kiến Nhân dân đối với Đề án điều chỉnh địa giới đơn vị hành chính giữa thành phố Hà Nội và tỉnh Phú Thọ trên địa bàn xã Tây Phương",tep:"vb/463-KH-UBND.pdf"},
+ {so:"462/KH-UBND",ngay:"20/10/2026",linhvuc:"Giáo dục",ten:"Kế hoạch triển khai công tác phòng, chống tai nạn, thương tích trong các cơ sở giáo dục trên địa bàn xã Tây Phương năm học 2026 - 2027",tep:"vb/462-KH-UBND.pdf"},
+ {so:"459/KH-UBND",ngay:"20/10/2026",linhvuc:"Y tế",ten:"Kế hoạch triển khai Tuần lễ “Dinh dưỡng và phát triển” năm 2026",tep:"vb/459-KH-UBND.pdf"},
+ {so:"458/KH-UBND",ngay:"16/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện năm 2026 trên địa bàn xã Tây Phương",tep:"vb/458-KH-UBND.pdf"},
+ {so:"452/KH-UBND",ngay:"14/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/452-KH-UBND.pdf"},
+ {so:"449/KH-UBND",ngay:"13/10/2026",linhvuc:"Bảo hiểm xã hội, bảo hiểm y tế",ten:"Kế hoạch thông tin, tuyên truyền chính sách bảo hiểm xã hội, bảo hiểm y tế giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/449-KH-UBND.pdf"},
+ {so:"444/KH-UBND",ngay:"05/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch tuyển chọn, gọi công dân nhập ngũ và thực hiện nghĩa vụ tham gia Công an nhân dân năm 2027",tep:"vb/444-KH-UBND.pdf"}
+];
+
+/* ===== Văn bản quy phạm pháp luật của Thành phố ===== */
+const TP = [
+ {so:"149/2026/QĐ-UBND",ngay:"22/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"An sinh xã hội",ten:"Quyết định ban hành quy định chuẩn nghèo đa chiều của thành phố Hà Nội giai đoạn 2027 - 2030",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/149-2026-QD-UBND.pdf"},
+ {so:"148/2026/QĐ-UBND",ngay:"19/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"Khoa học, công nghệ, chuyển đổi số",ten:"Quyết định quy định trình tự, thủ tục hỗ trợ phát triển hạ tầng và tổ chức có hoạt động trong lĩnh vực khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số trên địa bàn thành phố Hà Nội",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/148-2026-QD-UBND.pdf"},
+ {so:"Luật Thủ đô (sửa đổi)",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Thủ đô",ten:"Luật Thủ đô (sửa đổi) năm 2026: cơ chế, chính sách đặc thù cho thành phố Hà Nội",tt:"ok",ttText:"Có hiệu lực từ 01/7/2026",tra:"Luật Thủ đô 2026"}
+];
+
+/* ===== Văn bản Trung ương thường dùng ở cấp xã ===== */
+const TW = [
+ {so:"Hiến pháp 2013",ngay:"28/11/2013",coquan:"Quốc hội",linhvuc:"Hiến pháp, bộ máy nhà nước",ten:"Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam năm 2013, được sửa đổi, bổ sung bởi Nghị quyết số 203/2025/QH15 ngày 16/6/2025 (chính quyền địa phương hai cấp; Mặt trận Tổ quốc, Công đoàn)",tt:"ok",ttText:"Đang có hiệu lực",tra:"Hiến pháp 2013 Nghị quyết 203/2025/QH15"},
+ {so:"72/2025/QH15",ngay:"16/6/2025",coquan:"Quốc hội",linhvuc:"Hiến pháp, bộ máy nhà nước",ten:"Luật Tổ chức chính quyền địa phương: tổ chức chính quyền địa phương ở cấp tỉnh và cấp xã",tt:"ok",ttText:"Đang có hiệu lực",link:"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2025_807-808_72-2025-qh15..pdf",linkText:"Bản Công báo (PDF)"},
+ {so:"64/2025/QH15",ngay:"19/02/2025",coquan:"Quốc hội",linhvuc:"Xây dựng, kiểm tra văn bản",ten:"Luật Ban hành văn bản quy phạm pháp luật, được sửa đổi, bổ sung bởi Luật số 87/2025/QH15 ngày 25/6/2025",tt:"ok",ttText:"Đang có hiệu lực",tra:"Luật 64/2025/QH15"},
+ {so:"60/2014/QH13",ngay:"20/11/2014",coquan:"Quốc hội",linhvuc:"Hộ tịch",ten:"Luật Hộ tịch năm 2014. Luật Hộ tịch (sửa đổi) đã được Quốc hội thông qua ngày 23/4/2026, có hiệu lực từ 01/3/2027 và thay thế Luật này",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Hộ tịch 60/2014/QH13"},
+ {so:"Luật Hộ tịch (sửa đổi) 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Hộ tịch",ten:"Luật Hộ tịch (sửa đổi): công nhận giá trị pháp lý của dữ liệu hộ tịch điện tử; Chủ tịch UBND cấp xã có thẩm quyền ký giấy tờ hộ tịch",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Hộ tịch sửa đổi 2026"},
+ {so:"23/2015/NĐ-CP",ngay:"16/02/2015",coquan:"Chính phủ",linhvuc:"Chứng thực",ten:"Nghị định về cấp bản sao từ sổ gốc, chứng thực bản sao từ bản chính, chứng thực chữ ký và chứng thực hợp đồng, giao dịch; được sửa đổi, bổ sung bởi Nghị định số 07/2025/NĐ-CP và Nghị định số 280/2025/NĐ-CP (hiệu lực 01/11/2025)",tt:"ok",ttText:"Đang có hiệu lực",link:"https://www.moj.gov.vn/vbpq/Lists/Vn%20bn%20php%20lut/Attachments/30394/VanBanGoc_23.2015.ND.CP.pdf",linkText:"Văn bản gốc (Bộ Tư pháp)"},
+ {so:"280/2025/NĐ-CP",ngay:"27/10/2025",coquan:"Chính phủ",linhvuc:"Chứng thực",ten:"Nghị định sửa đổi, bổ sung một số điều của Nghị định số 23/2015/NĐ-CP: không yêu cầu xuất trình giấy tờ đã tích hợp trên VNeID khi chứng thực; mở rộng thẩm quyền chứng thực của cấp xã",tt:"ok",ttText:"Có hiệu lực từ 01/11/2025",tra:"Nghị định 280/2025/NĐ-CP"},
+ {so:"35/2013/QH13",ngay:"20/6/2013",coquan:"Quốc hội",linhvuc:"Hòa giải ở cơ sở",ten:"Luật Hòa giải ở cơ sở năm 2013. Luật Hòa giải ở cơ sở (sửa đổi) đã được Quốc hội thông qua tháng 8/2026, có hiệu lực từ 01/3/2027",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Hòa giải ở cơ sở 35/2013/QH13"},
+ {so:"Luật Hòa giải ở cơ sở (sửa đổi) 2026",ngay:"8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Hòa giải ở cơ sở",ten:"Luật Hòa giải ở cơ sở (sửa đổi), gồm 5 chương, 35 điều: bổ sung cơ chế chỉ định hòa giải viên, ứng dụng công nghệ thông tin trong hòa giải",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Hòa giải ở cơ sở sửa đổi 2026"},
+ {so:"14/2012/QH13",ngay:"20/6/2012",coquan:"Quốc hội",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Luật Phổ biến, giáo dục pháp luật năm 2012. Luật Phổ biến, giáo dục pháp luật (sửa đổi) đã được Quốc hội thông qua ngày 23/8/2026, có hiệu lực từ 01/3/2027",tt:"warn",ttText:"Hiệu lực đến 28/02/2027",tra:"Luật Phổ biến giáo dục pháp luật 14/2012/QH13"},
+ {so:"Luật PBGDPL (sửa đổi) 2026",ngay:"23/8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Luật Phổ biến, giáo dục pháp luật (sửa đổi): Cổng Pháp luật quốc gia là nền tảng số dùng chung; Hội đồng phối hợp phổ biến, giáo dục pháp luật ở cấp xã; truyền thông chính sách",tt:"info",ttText:"Có hiệu lực từ 01/3/2027",tra:"Luật Phổ biến giáo dục pháp luật sửa đổi 2026"},
+ {so:"31/2024/QH15",ngay:"18/01/2024",coquan:"Quốc hội",linhvuc:"Đất đai",ten:"Luật Đất đai năm 2024, đã được sửa đổi, bổ sung bởi nhiều luật (văn bản hợp nhất số 44/VBHN-VPQH)",tt:"ok",ttText:"Đang có hiệu lực",tra:"Luật Đất đai 31/2024/QH15"},
+ {so:"Luật Tín ngưỡng, tôn giáo (sửa đổi) 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Tín ngưỡng, tôn giáo",ten:"Luật Tín ngưỡng, tôn giáo (sửa đổi), thay thế Luật Tín ngưỡng, tôn giáo năm 2016",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật Tín ngưỡng tôn giáo sửa đổi 2026"},
+ {so:"Luật Tiếp cận thông tin (sửa đổi) 2026",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Tiếp cận thông tin",ten:"Luật Tiếp cận thông tin (sửa đổi): quyền yêu cầu cơ quan nhà nước cung cấp thông tin",tt:"ok",ttText:"Có hiệu lực từ 01/9/2026",tra:"Luật Tiếp cận thông tin sửa đổi 2026"},
+ {so:"Luật sửa đổi Luật Thi đua, khen thưởng",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Thi đua, khen thưởng",ten:"Luật sửa đổi, bổ sung một số điều của Luật Thi đua, khen thưởng (4 điều) sau sắp xếp tổ chức bộ máy",tt:"ok",ttText:"Có hiệu lực từ 01/10/2026",tra:"Luật sửa đổi Luật Thi đua khen thưởng 2026"},
+ {so:"Luật sửa đổi Luật Trợ giúp pháp lý",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Trợ giúp pháp lý",ten:"Luật sửa đổi, bổ sung một số điều của Luật Trợ giúp pháp lý",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật sửa đổi Luật Trợ giúp pháp lý 2026"},
+ {so:"Luật sửa đổi Luật Công chứng",ngay:"23/4/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Công chứng",ten:"Luật sửa đổi, bổ sung một số điều của Luật Công chứng",tt:"info",ttText:"Có hiệu lực từ 01/01/2027",tra:"Luật sửa đổi Luật Công chứng 2026"},
+ {so:"14/2026/QH16",ngay:"23/8/2026",coquan:"Quốc hội khóa XVI",linhvuc:"Quốc phòng, an ninh",ten:"Luật sửa đổi, bổ sung một số điều của 09 luật về quân sự, quốc phòng",tt:"ok",ttText:"Có hiệu lực từ 01/9/2026",tra:"Luật 14/2026/QH16"}
+];
+
+/* ===== Cổng tra cứu ===== */
+const PORTALS = [
+ {nhom:"Tra cứu văn bản pháp luật",items:[
+  {ten:"Cổng Pháp luật quốc gia",url:"https://phapluat.gov.vn",mota:"Bộ Tư pháp. Văn bản quy phạm pháp luật chính thống, AI pháp luật, phản ánh chính sách."},
+  {ten:"Cơ sở dữ liệu quốc gia về văn bản pháp luật",url:"https://vbpl.vn",mota:"Tra cứu toàn văn, tình trạng hiệu lực, văn bản hợp nhất."},
+  {ten:"Công báo Chính phủ",url:"https://congbao.chinhphu.vn",mota:"Văn bản đăng Công báo nước Cộng hòa xã hội chủ nghĩa Việt Nam."},
+  {ten:"Hệ thống văn bản Chính phủ",url:"https://vanban.chinhphu.vn",mota:"Văn bản do Chính phủ, Thủ tướng Chính phủ ban hành."},
+  {ten:"Cổng thông tin điện tử Quốc hội",url:"https://quochoi.vn",mota:"Luật, nghị quyết của Quốc hội; dự thảo luật lấy ý kiến."}
+ ]},
+ {nhom:"Thành phố Hà Nội và xã Tây Phương",items:[
+  {ten:"Cổng thông tin điện tử Hà Nội",url:"https://hanoi.gov.vn",mota:"Tin tức, văn bản chỉ đạo, điều hành của Thành phố."},
+  {ten:"Công báo thành phố Hà Nội",url:"https://congbao.hanoi.gov.vn",mota:"Văn bản quy phạm pháp luật của HĐND, UBND Thành phố."},
+  {ten:"Trang thông tin điện tử xã Tây Phương",url:"https://tayphuong.hanoi.gov.vn",mota:"Thông báo, kế hoạch, thủ tục hành chính của xã."},
+  {ten:"Dịch vụ công thành phố Hà Nội",url:"https://dichvucong.hanoi.gov.vn",mota:"Nộp hồ sơ, tra cứu kết quả giải quyết thủ tục hành chính của Thành phố."},
+  {ten:"Cổng thông tin quy hoạch Hà Nội",url:"https://quyhoach.hanoi.gov.vn",mota:"Tra cứu thông tin quy hoạch đô thị, quy hoạch sử dụng đất."}
+ ]},
+ {nhom:"Dịch vụ công và phổ biến pháp luật",items:[
+  {ten:"Cổng Dịch vụ công quốc gia",url:"https://dichvucong.gov.vn",mota:"Thủ tục hành chính trực tuyến: hộ tịch, chứng thực, cư trú và các lĩnh vực khác."},
+  {ten:"Cổng thông tin điện tử Phổ biến, giáo dục pháp luật quốc gia",url:"https://pbgdpl.gov.vn",mota:"Tủ sách pháp luật, tài liệu, tờ gấp, tiểu phẩm pháp luật."},
+  {ten:"Bộ Tư pháp",url:"https://moj.gov.vn",mota:"Tin tức tư pháp, hướng dẫn nghiệp vụ hộ tịch, chứng thực, hòa giải."},
+  {ten:"Cổng thông tin điện tử Chính phủ",url:"https://chinhphu.vn",mota:"Thông tin chỉ đạo, điều hành, chính sách mới."}
+ ]}
+];
+
+const TABS=[
+ {id:"xa",label:"Văn bản của xã",data:()=>XA},
+ {id:"thanh-pho",label:"Văn bản Thành phố",data:()=>TP},
+ {id:"trung-uong",label:"Văn bản Trung ương",data:()=>TW},
+ {id:"cong-tra-cuu",label:"Cổng tra cứu",data:()=>null},
+ {id:"huong-dan",label:"Hướng dẫn tra cứu",data:()=>null}
+];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d");
+const searchUrl=t=>"https://www.google.com/search?q="+encodeURIComponent(t+" site:vbpl.vn OR site:phapluat.gov.vn OR site:chinhphu.vn");
+
+function current(){const h=location.hash.replace("#","");return TABS.find(t=>t.id===h)?h:"xa"}
+
+function renderTabs(){
+  const cur=current();
+  document.getElementById("tabs").innerHTML=TABS.map(t=>{
+    const d=t.data();const n=d?`<span class="n">${d.length}</span>`:"";
+    return `<a href="#${t.id}" ${t.id===cur?'aria-current="page"':""}>${t.label}${n}</a>`}).join("");
+}
+function renderStats(){
+  const files=[...XA,...TP].filter(x=>x.tep).length;
+  document.getElementById("stats").innerHTML=
+   `<div class="stat"><b>${XA.length}</b>kế hoạch của xã</div>`+
+   `<div class="stat"><b>${TP.length}</b>văn bản Thành phố</div>`+
+   `<div class="stat"><b>${TW.length}</b>văn bản Trung ương</div>`+
+   `<div class="stat"><b>${files}</b>tệp có chữ ký, đóng dấu</div>`+
+   `<div class="stat"><b>${PORTALS.reduce((a,g)=>a+g.items.length,0)}</b>cổng tra cứu chính thống</div>`;
+}
+function fillFields(){
+  const s=new Set([...XA,...TP,...TW].map(x=>x.linhvuc));
+  const sel=document.getElementById("field");
+  [...s].sort((a,b)=>a.localeCompare(b,"vi")).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;sel.appendChild(o)});
+}
+
+function card(x,kind){
+  const cls=kind==="xa"?"":(kind==="tp"?"tp":"tw");
+  const status=kind==="xa"?`<span class="pill ok">Đã ký, đóng dấu</span>`:`<span class="pill ${x.tt}">${esc(x.ttText)}</span>`;
+  const issuer=kind==="xa"?"UBND xã Tây Phương":x.coquan;
+  let btns="";
+  if(x.tep) btns+=`<button type="button" class="btn primary" data-file="${x.tep}" data-code="${esc(x.so)}" data-title="${esc(x.ten)}">${ICON_PDF}Đọc văn bản</button>`;
+  if(x.link) btns+=`<a class="btn" href="${x.link}" target="_blank" rel="noopener">${ICON_LINK}${esc(x.linkText)}</a>`;
+  if(kind!=="xa") btns+=`<a class="btn" href="${searchUrl(x.tra||x.so)}" target="_blank" rel="noopener">${ICON_SEARCH}Tra cứu nguồn chính thống</a>`;
+  return `<article class="card ${cls}">
+    <div class="meta"><span class="code">${esc(x.so)}</span>${status}</div>
+    <h3>${esc(x.ten)}</h3>
+    <div class="issuer">${esc(issuer)} · Ngày ${esc(x.ngay)}</div>
+    <div class="meta"><span class="tag">${esc(x.linhvuc)}</span></div>
+    <div class="actions">${btns}</div>
+  </article>`;
+}
+
+function filterList(list){
+  const q=norm(document.getElementById("q").value.trim());
+  const f=document.getElementById("field").value;
+  return list.filter(x=>(!f||x.linhvuc===f)&&(!q||norm(x.so+" "+x.ten+" "+x.linhvuc+" "+(x.coquan||"")).includes(q)));
+}
+
+const HEAD={
+ "xa":["Văn bản của xã Tây Phương","Các kế hoạch triển khai do UBND xã ban hành, bản điện tử đã ký số và đóng dấu. Bấm “Đọc văn bản” để mở toàn văn."],
+ "thanh-pho":["Văn bản của thành phố Hà Nội","Văn bản quy phạm pháp luật của UBND Thành phố có tệp đính kèm, và Luật Thủ đô. Văn bản khác tra cứu tại Công báo thành phố Hà Nội."],
+ "trung-uong":["Văn bản Trung ương thường dùng ở cấp xã","Hiến pháp, luật, nghị định về chính quyền địa phương, hộ tịch, chứng thực, hòa giải ở cơ sở, phổ biến pháp luật, đất đai và các luật mới thông qua năm 2026."]
+};
+
+function renderView(){
+  const cur=current();renderTabs();
+  const v=document.getElementById("view");
+  document.querySelector(".searchband").classList.toggle("hidden",cur==="cong-tra-cuu"||cur==="huong-dan");
+  if(cur==="cong-tra-cuu"){
+    v.innerHTML=`<div class="section-head"><div><h2>Cổng tra cứu chính thống</h2><p>Đường dẫn tới các cổng thông tin của Quốc hội, Chính phủ, Bộ Tư pháp, thành phố Hà Nội và xã Tây Phương.</p></div></div>`+
+     PORTALS.map(g=>`<div class="portal-group"><h3>${g.nhom}</h3><div class="portals">${g.items.map(p=>`<a class="portal" href="${p.url}" target="_blank" rel="noopener"><b>${esc(p.ten)}</b><code>${p.url.replace("https://","")}</code><span>${esc(p.mota)}</span></a>`).join("")}</div></div>`).join("");
+    return;
+  }
+  if(cur==="huong-dan"){
+    v.innerHTML=`<div class="section-head"><div><h2>Hướng dẫn tra cứu văn bản</h2><p>Bốn bước để tìm đúng văn bản và kiểm tra văn bản còn hiệu lực hay không.</p></div></div>
+    <div class="guide">
+     <div class="step"><div class="k">1</div><p><b>Xác định số hiệu.</b> Số hiệu gồm số thứ tự, năm ban hành và ký hiệu loại văn bản, cơ quan ban hành, ví dụ 72/2025/QH15 (Luật của Quốc hội khóa XV) hoặc 454/KH-UBND (Kế hoạch của UBND xã).</p></div>
+     <div class="step"><div class="k">2</div><p><b>Tìm trong Tủ sách.</b> Gõ số hiệu hoặc từ khóa vào ô tìm kiếm; có thể gõ không dấu. Chọn lĩnh vực để thu hẹp kết quả.</p></div>
+     <div class="step"><div class="k">3</div><p><b>Kiểm tra hiệu lực.</b> Nhãn xanh: đang có hiệu lực. Nhãn vàng: còn hiệu lực nhưng đã có luật mới thay thế. Nhãn lam: đã thông qua, chưa có hiệu lực.</p></div>
+     <div class="step"><div class="k">4</div><p><b>Đối chiếu nguồn chính thống.</b> Bấm “Tra cứu nguồn chính thống” để mở văn bản trên vbpl.vn, phapluat.gov.vn hoặc chinhphu.vn trước khi áp dụng.</p></div>
+    </div>
+    <div class="note" style="margin-top:18px"><b>Cần hỗ trợ?</b> Liên hệ Phòng Nội vụ - Tư pháp, UBND xã Tây Phương để được hướng dẫn về hộ tịch, chứng thực, hòa giải ở cơ sở. Người thuộc diện được trợ giúp pháp lý gọi Tổng đài 1900 6275.</div>`;
+    return;
+  }
+  const tab=TABS.find(t=>t.id===cur);const list=filterList(tab.data());
+  const kind=cur==="xa"?"xa":(cur==="thanh-pho"?"tp":"tw");
+  const [h,p]=HEAD[cur];
+  let note="";
+  if(cur==="trung-uong") note=`<div class="note"><b>Tình trạng hiệu lực rà soát đến 14/11/2026.</b> Một số luật mới do Quốc hội khóa XVI thông qua năm 2026 chưa có hiệu lực; trong thời gian đó vẫn áp dụng luật hiện hành.</div>`;
+  if(cur==="thanh-pho") note=`<div class="note"><b>Tra cứu đầy đủ văn bản của Thành phố</b> tại <a href="https://congbao.hanoi.gov.vn" target="_blank" rel="noopener">Công báo thành phố Hà Nội</a> và <a href="https://hanoi.gov.vn" target="_blank" rel="noopener">Cổng thông tin điện tử Hà Nội</a>.</div>`;
+  v.innerHTML=`<div class="section-head"><div><h2>${h}</h2><p>${p}</p></div></div>${note}`+
+   (list.length?`<div class="grid">${list.map(x=>card(x,kind)).join("")}</div>`:`<div class="empty">Không tìm thấy văn bản phù hợp. Thử từ khóa khác hoặc chọn “Tất cả lĩnh vực”.</div>`);
+}
+
+document.getElementById("searchForm").addEventListener("submit",e=>e.preventDefault());
+document.getElementById("q").addEventListener("input",renderView);
+document.getElementById("field").addEventListener("change",renderView);
+window.addEventListener("hashchange",renderView);
+/* ===== Trình đọc PDF ngay trong trang ===== */
+let pdfDoc=null,scale=1.3,renderToken=0;
+const reader=document.getElementById("reader"),pagesEl=document.getElementById("readerPages");
+async function renderPages(){
+  const my=++renderToken;pagesEl.innerHTML="";
+  const w=Math.min(pagesEl.clientWidth-24,1000);
+  for(let i=1;i<=pdfDoc.numPages;i++){
+    if(my!==renderToken)return;
+    const page=await pdfDoc.getPage(i);
+    const base=page.getViewport({scale:1});
+    const vp=page.getViewport({scale:(w/base.width)*scale/1.3});
+    const ratio=window.devicePixelRatio||1;
+    const c=document.createElement("canvas");
+    c.width=Math.floor(vp.width*ratio);c.height=Math.floor(vp.height*ratio);
+    c.style.width=Math.floor(vp.width)+"px";
+    c.setAttribute("aria-label","Trang "+i);
+    pagesEl.appendChild(c);
+    await page.render({canvasContext:c.getContext("2d"),viewport:vp,transform:ratio!==1?[ratio,0,0,ratio,0,0]:null}).promise;
+  }
+}
+async function openReader(file,code,title){
+  document.getElementById("readerCode").textContent=code;
+  document.getElementById("readerTitle").textContent=title;
+  reader.classList.remove("hidden");document.body.style.overflow="hidden";
+  pagesEl.innerHTML='<div class="reader-msg">Đang mở văn bản...</div>';
+  document.getElementById("readerClose").focus();
+  try{
+    if(!window.pdfjsLib)throw new Error("nolib");
+    const buf=await (await fetch(file)).arrayBuffer();
+    pdfDoc=await pdfjsLib.getDocument({data:buf}).promise;
+    scale=1.3;await renderPages();
+  }catch(e){
+    pagesEl.innerHTML=`<div class="reader-msg">Không hiển thị được văn bản trong trang. <a href="${file}" target="_blank" rel="noopener">Mở tệp gốc</a></div>`;
+  }
+}
+function closeReader(){renderToken++;reader.classList.add("hidden");document.body.style.overflow="";pdfDoc=null;pagesEl.innerHTML=""}
+document.getElementById("readerClose").addEventListener("click",closeReader);
+document.getElementById("zoomIn").addEventListener("click",()=>{if(pdfDoc){scale=Math.min(scale+0.3,3);renderPages()}});
+document.getElementById("zoomOut").addEventListener("click",()=>{if(pdfDoc){scale=Math.max(scale-0.3,0.6);renderPages()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!reader.classList.contains("hidden"))closeReader()});
+document.getElementById("view").addEventListener("click",e=>{const b=e.target.closest("button[data-file]");if(b)openReader(b.dataset.file,b.dataset.code,b.dataset.title)});
+fillFields();renderStats();renderView();
+</script>
+</body>
+</html>
