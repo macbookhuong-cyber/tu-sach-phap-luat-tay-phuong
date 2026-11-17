@@ -257,6 +257,13 @@ a.ch:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(42,24,15,.2)}
 .ch-ph{width:170px;height:170px;margin:16px 0 8px;border:2px dashed #E0C8A4;border-radius:14px;display:grid;place-items:center;color:#8a6a2b;font-weight:700}
 .ch-slogan{margin:18px 0 0;text-align:center;font-family:"Lora",serif;font-weight:700;font-size:18px;color:#A3201C}
 @media (prefers-reduced-motion:reduce){.ch{transition:none}}
+.order-note{margin:0 0 6px;color:#6b5a4e;font-size:14px}
+.month-head{display:flex;align-items:center;gap:12px;margin:22px 0 12px;font-family:Lora,serif;font-weight:700;color:#A3201C;font-size:18px}
+.month-head::after{content:"";flex:1;height:1px;background:#e3cfa6}
+.month-head em{font-style:normal;font-family:Inter,sans-serif;font-weight:600;font-size:12.5px;color:#8a6d3b;background:#f7ecd6;border-radius:999px;padding:3px 10px;order:2}
+.month-head::after{order:3}
+.pill.new{background:#A3201C;color:#fff}
+.newtag{font-style:normal;font-size:11px;font-weight:700;color:#fff;background:#A3201C;border-radius:6px;padding:1px 6px;vertical-align:2px}
 </style>
 </head>
 <body>
@@ -360,7 +367,29 @@ const XA = [
  {so:"458/KH-UBND",ngan:"An toàn sử dụng điện năm 2026",ngay:"16/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện năm 2026 trên địa bàn xã Tây Phương",tep:"vb/458-KH-UBND.pdf"},
  {so:"452/KH-UBND",ngan:"An toàn sử dụng điện giai đoạn 2026 - 2030",ngay:"14/10/2026",linhvuc:"An toàn sử dụng điện",ten:"Kế hoạch thực hiện Chương trình quốc gia về an toàn trong sử dụng điện giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/452-KH-UBND.pdf"},
  {so:"449/KH-UBND",ngan:"Tuyên truyền chính sách BHXH, BHYT giai đoạn 2026 - 2030",ngay:"13/10/2026",linhvuc:"Bảo hiểm xã hội, bảo hiểm y tế",ten:"Kế hoạch thông tin, tuyên truyền chính sách bảo hiểm xã hội, bảo hiểm y tế giai đoạn 2026 - 2030 trên địa bàn xã Tây Phương",tep:"vb/449-KH-UBND.pdf"},
- {so:"444/KH-UBND",ngan:"Tuyển chọn, gọi công dân nhập ngũ năm 2027",ngay:"05/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch tuyển chọn, gọi công dân nhập ngũ và thực hiện nghĩa vụ tham gia Công an nhân dân năm 2027",tep:"vb/444-KH-UBND.pdf"}
+ {so:"444/KH-UBND",ngan:"Tuyển chọn, gọi công dân nhập ngũ năm 2027",ngay:"05/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch tuyển chọn, gọi công dân nhập ngũ và thực hiện nghĩa vụ tham gia Công an nhân dân năm 2027",tep:"vb/444-KH-UBND.pdf"},
+ {so:"477/KH-UBND",ngan:"Hoạt động nhân dịp Lễ Giáng sinh năm 2026",ngay:"30/10/2026",linhvuc:"Tín ngưỡng, tôn giáo",ten:"Kế hoạch tổ chức các hoạt động nhân dịp Lễ Giáng sinh (Noel) năm 2026",tep:"vb/477-KH-UBND.pdf"},
+ {so:"401/KH-UBND",ngan:"Triển khai thi hành Luật Hộ tịch năm 2026",ngay:"07/9/2026",linhvuc:"Hộ tịch",ten:"Kế hoạch triển khai thi hành Luật Hộ tịch số 03/2026/QH16 ngày 23/4/2026 trên địa bàn xã Tây Phương",tep:"vb/401-KH-UBND.pdf"},
+ {so:"371/KH-UBND",ngan:"Giáo dục lý tưởng cách mạng cho thanh, thiếu niên",ngay:"17/8/2026",linhvuc:"Giáo dục",ten:"Kế hoạch thực hiện Chương trình “Tăng cường giáo dục lý tưởng cách mạng, đạo đức, lối sống và khơi dậy khát vọng cống hiến cho thanh niên, thiếu niên và nhi đồng giai đoạn 2021 - 2030” của ngành Giáo dục và Đào tạo Hà Nội từ năm 2026 đến 2030",tep:"vb/371-KH-UBND.pdf"},
+ {so:"372/KH-UBND",ngan:"100 ngày đêm ra quân hỗ trợ chuyển đổi số",ngay:"17/8/2026",linhvuc:"Chuyển đổi số",ten:"Kế hoạch tổ chức Hội nghị triển khai và phát động kế hoạch 100 ngày đêm ra quân hỗ trợ hoạt động chuyển đổi số xã Tây Phương năm 2026",tep:"vb/372-KH-UBND.pdf"},
+ {so:"302/KH-UBND",ngan:"Tuyên truyền công tác dân tộc, tôn giáo năm 2026",ngay:"30/6/2026",linhvuc:"Tín ngưỡng, tôn giáo",ten:"Kế hoạch tuyên truyền về công tác dân tộc, tôn giáo trên địa bàn xã Tây Phương năm 2026",tep:"vb/302-KH-UBND.pdf"},
+ {so:"299/KH-UBND",ngan:"Thành lập, sắp xếp, đổi tên thôn theo Nghị quyết 28/NQ-HĐND",ngay:"27/6/2026",linhvuc:"Tổ chức thôn",ten:"Kế hoạch triển khai thực hiện Nghị quyết số 28/NQ-HĐND ngày 25/6/2026 của Hội đồng nhân dân xã Tây Phương về việc thành lập, sắp xếp, đổi tên thôn và số lượng người hoạt động không chuyên trách ở thôn trên địa bàn xã Tây Phương",tep:"vb/299-KH-UBND.pdf"},
+ {so:"234/KH-UBND",ngan:"Đào tạo kỹ năng số, thương mại điện tử phát triển kinh tế số",ngay:"14/5/2026",linhvuc:"Chuyển đổi số",ten:"Kế hoạch tổ chức đào tạo, bồi dưỡng kỹ năng số và thương mại điện tử phục vụ phát triển kinh tế số trên địa bàn xã Tây Phương năm 2026",tep:"vb/234-KH-UBND.pdf"},
+ {so:"217/KH-UBND",ngan:"Cao điểm tuyên truyền Luật Thủ đô năm 2026",ngay:"06/5/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch cao điểm tuyên truyền, phổ biến, tập huấn và bồi dưỡng Luật Thủ đô năm 2026 và các văn bản thi hành",tep:"vb/217-KH-UBND.pdf"},
+ {so:"213/KH-UBND",ngan:"Thi đua “Doanh nghiệp Thủ đô đổi mới sáng tạo”",ngay:"05/5/2026",linhvuc:"Kinh tế",ten:"Kế hoạch triển khai phong trào thi đua “Doanh nghiệp Thủ đô đổi mới sáng tạo, hội nhập và phát triển giai đoạn 2026 - 2030” trên địa bàn xã Tây Phương",tep:"vb/213-KH-UBND.pdf"},
+ {so:"209/KH-UBND",ngan:"Tuyên dương học sinh giỏi tiêu biểu năm học 2025 - 2026",ngay:"29/4/2026",linhvuc:"Giáo dục",ten:"Kế hoạch tổ chức Lễ tuyên dương khen thưởng học sinh giỏi tiêu biểu năm học 2025 - 2026",tep:"vb/209-KH-UBND.pdf"},
+ {so:"180/KH-UBND",ngan:"Thi đua chào mừng các ngày lễ lớn năm 2026",ngay:"14/4/2026",linhvuc:"Thi đua, khen thưởng",ten:"Kế hoạch tổ chức phong trào thi đua chào mừng các ngày lễ lớn năm 2026",tep:"vb/180-KH-UBND.pdf"},
+ {so:"135/KH-UBND",ngan:"Thi đua “Toàn dân đoàn kết xây dựng đời sống văn hóa”",ngay:"23/3/2026",linhvuc:"Văn hóa",ten:"Kế hoạch tổ chức phong trào thi đua “Toàn dân đoàn kết xây dựng đời sống văn hóa” trên địa bàn xã Tây Phương giai đoạn 2026 - 2030",tep:"vb/135-KH-UBND.pdf"},
+ {so:"125/KH-UBND",ngan:"Thi đua “An toàn thực phẩm” 2026 - 2030",ngay:"18/3/2026",linhvuc:"An toàn thực phẩm",ten:"Kế hoạch tổ chức phong trào thi đua “An toàn thực phẩm” trên địa bàn xã Tây Phương giai đoạn 2026 - 2030",tep:"vb/125-KH-UBND.pdf"},
+ {so:"322/KH-UBND",ngan:"Tuyên truyền cải cách hành chính 2026 - 2030",ngay:"14/7/2026",linhvuc:"Cải cách hành chính",ten:"Kế hoạch thông tin, tuyên truyền cải cách hành chính nhà nước của xã Tây Phương giai đoạn 2026 - 2030",tep:"vb/322-KH-UBND.pdf"},
+ {so:"121/KH-UBND",ngan:"Tuyên truyền cải cách hành chính năm 2026",ngay:"13/3/2026",linhvuc:"Cải cách hành chính",ten:"Kế hoạch thông tin, tuyên truyền về cải cách hành chính nhà nước xã Tây Phương năm 2026",tep:"vb/121-KH-UBND.pdf"},
+ {so:"115/KH-UBND",ngan:"Hưởng ứng Ngày Quốc tế Hạnh phúc 20/3",ngay:"13/3/2026",linhvuc:"Gia đình",ten:"Kế hoạch tổ chức hội nghị tuyên truyền hưởng ứng Ngày Quốc tế Hạnh phúc (20/3) trên địa bàn xã Tây Phương năm 2026",tep:"vb/115-KH-UBND.pdf"},
+ {so:"114/KH-UBND",ngan:"Phát động thi đua “Sáng - Xanh - Sạch - Đẹp” chào mừng bầu cử",ngay:"12/3/2026",linhvuc:"Môi trường",ten:"Kế hoạch tổ chức Lễ phát động phong trào thi đua “Sáng - Xanh - Sạch - Đẹp” chào mừng cuộc bầu cử đại biểu Quốc hội và đại biểu HĐND các cấp nhiệm kỳ 2026 - 2031 trên địa bàn xã Tây Phương",tep:"vb/114-KH-UBND.pdf"},
+ {so:"101/KH-UBND",ngan:"Hưởng ứng Giờ Trái đất, tiết kiệm năng lượng mùa hè",ngay:"04/3/2026",linhvuc:"Năng lượng",ten:"Kế hoạch tổ chức hoạt động hưởng ứng Chiến dịch Giờ Trái đất, phát động cao điểm hè về sử dụng năng lượng tiết kiệm và hiệu quả năm 2026 trên địa bàn xã Tây Phương",tep:"vb/101-KH-UBND.pdf"},
+ {so:"73/KH-UBND",ngan:"Tuyên truyền pháp luật PCCC và CNCH 2026 - 2030",ngay:"09/02/2026",linhvuc:"Phòng cháy, chữa cháy",ten:"Kế hoạch tuyên truyền, phổ biến pháp luật và kiến thức phòng cháy, chữa cháy và cứu nạn, cứu hộ trên địa bàn xã Tây Phương giai đoạn 2026 - 2030",tep:"vb/73-KH-UBND.pdf"},
+ {so:"66/KH-UBND",ngan:"Quy tắc ứng xử nơi công cộng",ngay:"06/02/2026",linhvuc:"Văn hóa",ten:"Kế hoạch tiếp tục đẩy mạnh thực hiện Quy tắc ứng xử nơi công cộng; Quy tắc ứng xử của cán bộ, công chức, viên chức, người lao động trong các cơ quan trên địa bàn xã Tây Phương năm 2026 và các năm tiếp theo",tep:"vb/66-KH-UBND.pdf"},
+ {so:"29/KH-UBND",ngan:"Sử dụng năng lượng tiết kiệm, quản lý nhu cầu điện",ngay:"19/01/2026",linhvuc:"Năng lượng",ten:"Kế hoạch về việc sử dụng năng lượng tiết kiệm và hiệu quả, quản lý nhu cầu điện trên địa bàn xã Tây Phương giai đoạn 2026 - 2030 và năm 2026",tep:"vb/29-KH-UBND.pdf"},
+ {so:"25/KH-UBND",ngan:"Phổ biến pháp luật, hòa giải ở cơ sở năm 2026",ngay:"16/01/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Kế hoạch phổ biến, giáo dục pháp luật, hòa giải ở cơ sở, chuẩn tiếp cận pháp luật trên địa bàn xã Tây Phương năm 2026",tep:"vb/25-KH-UBND.pdf"}
 ];
 
 /* ===== Công văn chỉ đạo, tuyên truyền của UBND xã (bổ sung văn bản mới vào danh sách này) ===== */
@@ -375,8 +404,31 @@ const CV = [
  {so:"2284/UBND-VHXH",ngay:"21/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Phòng, chống dịch bệnh mùa Thu - Đông năm 2026",ten:"Công văn về việc tăng cường công tác phòng, chống dịch bệnh mùa Thu - Đông năm 2026",tep:"vb/2284-UBND-VHXH.pdf"},
  {so:"2278/UBND-KT",ngay:"21/10/2026",linhvuc:"Kinh tế",ngan:"Địa điểm, lĩnh vực ưu tiên tổ chức hội chợ, triển lãm năm 2027",ten:"Công văn triển khai thực hiện Danh mục địa điểm và lĩnh vực ưu tiên được tổ chức hội chợ, triển lãm thương mại trên địa bàn xã Tây Phương năm 2027",tep:"vb/2278-UBND-KT.pdf"},
  {so:"2247/UBND-KT",ngay:"16/10/2026",linhvuc:"Kinh tế",ngan:"Phát triển thị trường trong nước, kích cầu tiêu dùng",ten:"Công văn triển khai các giải pháp đẩy mạnh phát triển thị trường trong nước, kích cầu tiêu dùng góp phần thực hiện mục tiêu tăng trưởng năm 2026",tep:"vb/2247-UBND-KT.pdf"},
- {so:"2222/UBND-VHXH",ngay:"14/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Làm sạch, làm giàu dữ liệu tiêm chủng Quốc gia",ten:"Công văn về việc tiếp tục thực hiện và đẩy nhanh tiến độ làm sạch, làm giàu dữ liệu tiêm chủng Quốc gia",tep:"vb/2222-UBND-VHXH.pdf"}
+ {so:"2222/UBND-VHXH",ngay:"14/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Làm sạch, làm giàu dữ liệu tiêm chủng Quốc gia",ten:"Công văn về việc tiếp tục thực hiện và đẩy nhanh tiến độ làm sạch, làm giàu dữ liệu tiêm chủng Quốc gia",tep:"vb/2222-UBND-VHXH.pdf"},
+ {so:"2516/UBND-TYT",ngan:"Tổng vệ sinh môi trường, diệt bọ gậy phòng sốt xuất huyết",ngay:"11/11/2026",linhvuc:"Y tế",ten:"Công văn về việc triển khai chiến dịch tổng vệ sinh môi trường, thu gom phế thải đọng nước, diệt bọ gậy chủ động phòng, chống sốt xuất huyết",tep:"vb/2516-UBND-TYT.pdf"},
+ {so:"2423/UBND-HTNNMT",ngan:"Phân loại, thu gom, xử lý chất thải rắn công nghiệp",ngay:"02/11/2026",linhvuc:"Môi trường",ten:"Công văn về việc tăng cường phân loại, thu gom, vận chuyển và xử lý chất thải rắn công nghiệp trên địa bàn xã",tep:"vb/2423-UBND-HTNNMT.pdf"},
+ {so:"2322/UBND-NVTP",ngan:"Tuyên truyền hưởng ứng Ngày Pháp luật Việt Nam năm 2026",ngay:"23/10/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Công văn về việc tổ chức các hoạt động tuyên truyền hưởng ứng Ngày Pháp luật nước Cộng hòa xã hội chủ nghĩa Việt Nam năm 2026",tep:"vb/2322-UBND-NVTP.pdf"},
+ {so:"2324/UBND-VP",ngan:"Cuộc thi tìm hiểu pháp luật PCCC và CNCH trên iHanoi",ngay:"23/10/2026",linhvuc:"Phòng cháy, chữa cháy",ten:"Công văn về việc triển khai Cuộc thi trực tuyến tìm hiểu kiến thức, pháp luật về PCCC và CNCH trên ứng dụng iHanoi năm 2026",tep:"vb/2324-UBND-VP.pdf"},
+ {so:"2314/UBND-HTNNMT",ngan:"An toàn thực phẩm, truy xuất nguồn gốc nông, lâm, thủy sản",ngay:"23/10/2026",linhvuc:"An toàn thực phẩm",ten:"Công văn về việc tăng cường công tác quản lý chất lượng, an toàn thực phẩm và truy xuất nguồn gốc nông, lâm, thủy sản trên địa bàn xã",tep:"vb/2314-UBND-HTNNMT.pdf"},
+ {so:"2287/UBND-HTNNMT",ngan:"Kiểm soát ô nhiễm không khí cuối năm 2026",ngay:"21/10/2026",linhvuc:"Môi trường",ten:"Công văn về việc tăng cường kiểm soát ô nhiễm không khí các tháng cuối năm 2026 trên địa bàn xã Tây Phương",tep:"vb/2287-UBND-HTNNMT.pdf"},
+ {so:"2246/UBND-HTNNMT",ngan:"Bảo vệ môi trường tại cụm công nghiệp, làng nghề",ngay:"16/10/2026",linhvuc:"Môi trường",ten:"Công văn về việc tăng cường công tác quản lý nhà nước về môi trường tại các cụm công nghiệp, làng nghề và khu dân cư",tep:"vb/2246-UBND-HTNNMT.pdf"},
+ {so:"2203/UBND-NVTP",ngan:"Cuộc thi trực tuyến tìm hiểu về chuyển đổi số quốc gia",ngay:"13/10/2026",linhvuc:"Chuyển đổi số",ten:"Công văn về việc triển khai hưởng ứng tham gia Cuộc thi trực tuyến tìm hiểu về chuyển đổi số quốc gia",tep:"vb/2203-UBND-NVTP.pdf"},
+ {so:"2173/UBND-NVTP",ngan:"Tài liệu tìm hiểu pháp luật về chuyển giao công nghệ",ngay:"08/10/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Công văn về việc tuyên truyền, phổ biến tài liệu “Tìm hiểu một số quy định pháp luật về chuyển giao công nghệ”",tep:"vb/2173-UBND-NVTP.pdf"},
+ {so:"1566/UBND-KT",ngan:"Phòng, chống thiên tai tại di tích, cơ sở tín ngưỡng",ngay:"29/7/2026",linhvuc:"Phòng, chống thiên tai",ten:"Công văn về việc phòng, chống thiên tai tại các di tích lịch sử - văn hóa, danh lam thắng cảnh và cơ sở tín ngưỡng, tôn giáo",tep:"vb/1566-UBND-KT.pdf"},
+ {so:"1388/UBND-VHXH",ngan:"Tuyên truyền Nghị định 224/2026/NĐ-CP về chuyển đổi số",ngay:"08/7/2026",linhvuc:"Chuyển đổi số",ten:"Công văn về việc tuyên truyền, phổ biến thực hiện Nghị định số 224/2026/NĐ-CP ngày 24/6/2026 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Chuyển đổi số",tep:"vb/1388-UBND-VHXH.pdf"},
+ {so:"1207/UBND-KT",ngan:"Ứng phó nguy cơ thiếu hụt nguồn nước mùa khô",ngay:"17/6/2026",linhvuc:"Năng lượng",ten:"Công văn về việc chủ động ứng phó với nguy cơ thiếu hụt nguồn nước do huy động thủy điện trong bối cảnh bảo đảm an ninh năng lượng quốc gia",tep:"vb/1207-UBND-KT.pdf"},
+ {so:"1069/UBND-KT",ngan:"Ngày toàn dân tiết kiệm, chống lãng phí năm 2026",ngay:"03/6/2026",linhvuc:"Năng lượng",ten:"Công văn về việc triển khai hoạt động hưởng ứng Ngày toàn dân tiết kiệm, chống lãng phí năm 2026, chủ đề “Tiết kiệm năng lượng, thịnh vượng tương lai” trên địa bàn xã",tep:"vb/1069-UBND-KT.pdf"},
+ {so:"1039/UBND-VP",ngan:"Đẩy mạnh tuyên truyền Luật Thủ đô (sửa đổi)",ngay:"29/5/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Công văn về việc đẩy mạnh tuyên truyền, phổ biến Luật Thủ đô (sửa đổi)",tep:"vb/1039-UBND-VP.pdf"},
+ {so:"608/UBND-KT",ngan:"Tiết kiệm năng lượng, chuyển dịch năng lượng",ngay:"10/4/2026",linhvuc:"Năng lượng",ten:"Công văn về việc thực hiện tiết kiệm năng lượng, thúc đẩy chuyển dịch năng lượng trên địa bàn xã",tep:"vb/608-UBND-KT.pdf"},
+ {so:"386/UBND-UBND",ngan:"Ra quân tổng vệ sinh môi trường phục vụ bầu cử",ngay:"10/3/2026",linhvuc:"Môi trường",ten:"Công văn về việc tổ chức ra quân tổng vệ sinh môi trường phục vụ bầu cử đại biểu Quốc hội và HĐND các cấp nhiệm kỳ 2026 - 2031",tep:"vb/386-UBND-UBND.pdf"},
+ {so:"332/UBND-VHXH",ngan:"Trang trí tuyên truyền chào mừng ngày bầu cử",ngay:"02/3/2026",linhvuc:"Văn hóa - Xã hội",ten:"Công văn về việc tăng cường trang trí tuyên truyền chào mừng ngày bầu cử đại biểu Quốc hội và HĐND các cấp nhiệm kỳ 2026 - 2031",tep:"vb/332-UBND-VHXH.pdf"},
+ {so:"295/UBND-VP",ngan:"Phổ biến pháp luật phục vụ cuộc bầu cử",ngay:"13/02/2026",linhvuc:"Phổ biến, giáo dục pháp luật",ten:"Công văn về việc đẩy mạnh phổ biến, giáo dục pháp luật phục vụ cuộc bầu cử đại biểu Quốc hội khóa XVI và đại biểu HĐND các cấp nhiệm kỳ 2026 - 2031",tep:"vb/295-UBND-VP.pdf"}
 ];
+/* Xếp văn bản của xã theo ngày ban hành: mới nhất ở trên */
+function dkey(x){const p=String(x.ngay).split("/").map(Number);const n=parseInt(x.so,10)||0;return p.length===3?(p[2]*10000+p[1]*100+p[0])*100000+n:n;}
+[XA,CV].forEach(a=>a.sort((a,b)=>dkey(b)-dkey(a)));
+function isNew(x){const p=String(x.ngay).split("/").map(Number);if(p.length!==3)return false;return (Date.now()-new Date(p[2],p[1]-1,p[0]).getTime())<=15*864e5;}
+
 
 /* ===== Văn bản quy phạm pháp luật của Thành phố ===== */
 const TP = [
@@ -484,7 +536,7 @@ function card(x,kind){
   if(x.link) btns+=`<a class="btn" href="${x.link}" target="_blank" rel="noopener">${ICON_LINK}${esc(x.linkText)}</a>`;
   if(kind!=="xa") btns+=`<a class="btn" href="${searchUrl(x.tra||x.so)}" target="_blank" rel="noopener">${ICON_SEARCH}Tra cứu nguồn chính thống</a>`;
   return `<article class="card ${cls}">
-    <div class="meta"><span class="code">${esc(x.so)}</span>${status}</div>
+    <div class="meta"><span class="code">${esc(x.so)}</span>${status}${kind==="xa"&&isNew(x)?`<span class="pill new">Mới</span>`:""}</div>
     <h3>${esc(x.ten)}</h3>
     <div class="issuer">${esc(issuer)} · Ngày ${esc(x.ngay)}</div>
     <div class="meta"><span class="tag">${esc(x.linhvuc)}</span></div>
@@ -504,13 +556,19 @@ function filterList(list){
 }
 
 const HEAD={
- "xa":["Văn bản của xã Tây Phương","Các kế hoạch triển khai do UBND xã ban hành, bản điện tử đã ký số và đóng dấu. Bấm “Đọc văn bản” để mở toàn văn."],
- "cong-van":["Công văn chỉ đạo, tuyên truyền của xã Tây Phương","Công văn chỉ đạo, tuyên truyền của UBND xã thuộc lĩnh vực văn hóa - xã hội và kinh tế, bản điện tử có chữ ký, đóng dấu. Chọn lĩnh vực ở ô “Lĩnh vực” để lọc."],
+ "xa":["Kế hoạch của xã Tây Phương năm 2026","Các kế hoạch triển khai, tuyên truyền do UBND xã ban hành năm 2026, bản điện tử đã ký số và đóng dấu. Bấm “Đọc văn bản” để mở toàn văn."],
+ "cong-van":["Công văn chỉ đạo, tuyên truyền của xã Tây Phương năm 2026","Công văn chỉ đạo, tuyên truyền của UBND xã ban hành năm 2026, bản điện tử có chữ ký, đóng dấu. Chọn lĩnh vực ở ô “Lĩnh vực” để lọc."],
  "so-nganh":["Văn bản của các Sở, ngành Thành phố","Văn bản hướng dẫn của các Sở, ngành thành phố Hà Nội gửi UBND các xã, phường, bản điện tử có chữ ký, đóng dấu. Văn bản mới tiếp tục được bổ sung."],
  "thanh-pho":["Văn bản của thành phố Hà Nội","Văn bản quy phạm pháp luật của UBND Thành phố có tệp đính kèm, và Luật Thủ đô. Văn bản khác tra cứu tại Công báo thành phố Hà Nội."],
  "trung-uong":["Văn bản Trung ương thường dùng ở cấp xã","Hiến pháp, luật, nghị định về chính quyền địa phương, hộ tịch, chứng thực, hòa giải ở cơ sở, phổ biến pháp luật, đất đai và các luật mới thông qua năm 2026."]
 };
 
+function monthGroups(list,kind){
+  const g=[];list.forEach(x=>{const p=String(x.ngay).split("/");const m=p.length===3?`Tháng ${+p[1]}/${p[2]}`:"Khác";
+    let last=g[g.length-1];if(!last||last.m!==m){last={m,items:[]};g.push(last);}last.items.push(x);});
+  return `<p class="order-note">Văn bản xếp theo ngày ban hành, văn bản mới nhất ở trên cùng; văn bản ban hành trước xếp tiếp theo bên dưới.</p>`+
+   g.map(o=>`<div class="month-head"><span>${o.m}</span><em>${o.items.length} văn bản</em></div><div class="grid">${o.items.map(x=>card(x,kind)).join("")}</div>`).join("");
+}
 function renderView(){
   const cur=current();renderTabs();
   const v=document.getElementById("view");
@@ -532,9 +590,9 @@ function renderView(){
       const short=x.ngan||shortTitle(x.ten);
       const act=x.tep?`<button type="button" data-file="${x.tep}" data-code="${esc(x.so)}" data-title="${esc(x.ten)}">Đọc</button>`
         :`<a class="go" href="${x.link||searchUrl(x.tra||x.so)}" target="_blank" rel="noopener">Tra cứu</a>`;
-      return `<li><div class="t"><b>${esc(short)}</b><span>${esc(x.so)} · ${esc(x.ngay)}</span></div>${act}</li>`;};
+      return `<li><div class="t"><b>${esc(short)}${isNew(x)&&!x.coquan?` <i class="newtag">Mới</i>`:""}</b><span>${esc(x.so)} · ${esc(x.ngay)}</span></div>${act}</li>`;};
     v.innerHTML=`<div class="toc-banner"><small>Ủy ban nhân dân xã Tây Phương</small><h2>Mục lục Tủ sách pháp luật</h2>
-      <p>${total} văn bản xếp theo cấp ban hành: Trung ương, Thành phố, Sở, ngành và xã. Bấm “Đọc” để mở toàn văn, bấm “Tra cứu” để mở nguồn chính thống.</p>
+      <p>${total} văn bản xếp theo cấp ban hành: Trung ương, Thành phố, Sở, ngành và xã; trong mỗi nhóm, văn bản mới nhất ở trên cùng. Bấm “Đọc” để mở toàn văn, bấm “Tra cứu” để mở nguồn chính thống.</p>
       <div class="toc-count">${groups.map(g=>`<a href="#${g.tab}">${g.ten}: ${g.list.length}</a>`).join("")}</div></div>
       <div class="toc-grid">${groups.map(g=>{const l=filterList(g.list);return `<section class="toc-panel"><div class="toc-head ${g.k}">${g.ten}<span>${l.length}</span></div><ol class="toc-list">${l.map(item).join("")}<li class="pending">Đang cập nhật, tiếp tục bổ sung văn bản mới</li></ol></section>`}).join("")}</div>`;
     return;
@@ -557,7 +615,7 @@ function renderView(){
   if(cur==="trung-uong") note=`<div class="note"><b>Tình trạng hiệu lực rà soát đến 14/11/2026.</b> Một số luật mới do Quốc hội khóa XVI thông qua năm 2026 chưa có hiệu lực; trong thời gian đó vẫn áp dụng luật hiện hành.</div>`;
   if(cur==="thanh-pho") note=`<div class="note"><b>Tra cứu đầy đủ văn bản của Thành phố</b> tại <a href="https://congbao.hanoi.gov.vn" target="_blank" rel="noopener">Công báo thành phố Hà Nội</a> và <a href="https://hanoi.gov.vn" target="_blank" rel="noopener">Cổng thông tin điện tử Hà Nội</a>.</div>`;
   v.innerHTML=`<div class="section-head"><div><h2>${h}</h2><p>${p}</p></div></div>${note}`+
-   (list.length?`<div class="grid">${list.map(x=>card(x,kind)).join("")}</div>`:`<div class="empty">Không tìm thấy văn bản phù hợp. Thử từ khóa khác hoặc chọn “Tất cả lĩnh vực”.</div>`);
+   (list.length?((cur==="xa"||cur==="cong-van")?monthGroups(list,kind):`<div class="grid">${list.map(x=>card(x,kind)).join("")}</div>`):`<div class="empty">Không tìm thấy văn bản phù hợp. Thử từ khóa khác hoặc chọn “Tất cả lĩnh vực”.</div>`);
 }
 
 document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();
@@ -568,7 +626,7 @@ function renderShelves(){
    ["thanh-pho","Văn bản Thành phố","HĐND, UBND thành phố Hà Nội",TP.length],
    ["so-nganh","Văn bản Sở, ngành","Hướng dẫn của các Sở, ngành Thành phố",SO.length],
    ["xa","Kế hoạch triển khai của xã","Văn bản có chữ ký, đóng dấu của UBND xã",XA.length],
-   ["cong-van","Công văn chỉ đạo của xã","Văn hóa - xã hội, kinh tế",CV.length]];
+   ["cong-van","Công văn chỉ đạo của xã","Chỉ đạo, tuyên truyền năm 2026",CV.length]];
   document.getElementById("shelfGrid").innerHTML=S.map(([id,t,d,n])=>`<a class="shelf" href="#${id}"><b>${t}</b><span>${d}</span><i>${n} văn bản</i></a>`).join("");
 }
 renderShelves();
