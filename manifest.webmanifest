@@ -1,0 +1,16 @@
+{
+  "name": "Tủ sách pháp luật xã Tây Phương",
+  "short_name": "Tủ sách PL",
+  "description": "Tủ sách pháp luật điện tử - Mô hình chuyển đổi số của Phòng Nội vụ - Tư pháp xã Tây Phương",
+  "lang": "vi",
+  "start_url": "./?src=app",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#2A180F",
+  "theme_color": "#A3201C",
+  "icons": [
+    {"src": "img/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "img/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

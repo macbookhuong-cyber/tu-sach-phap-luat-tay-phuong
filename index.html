@@ -2,9 +2,16 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#A3201C">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tủ sách PL">
 <title>Tủ sách pháp luật xã Tây Phương</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -214,7 +221,7 @@ footer b{color:var(--ink)}
 .shelf-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
 .shelf-head h2{margin:0;font-family:"Lora",serif;font-size:26px;color:#A3201C}
 .shelf-head span{flex:1;height:2px;background:#E0C8A4}
-.shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
 .shelf{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:#3A2317;background:#FFFBF4;border:1px solid #E2D3BC;border-radius:18px;padding:20px}
 .shelf:hover{border-color:#A3201C}
 .shelf b{font-family:"Lora",serif;font-size:19px}
@@ -327,6 +334,21 @@ const XA = [
  {so:"444/KH-UBND",ngan:"Tuyển chọn, gọi công dân nhập ngũ năm 2027",ngay:"05/10/2026",linhvuc:"Quốc phòng, an ninh",ten:"Kế hoạch tuyển chọn, gọi công dân nhập ngũ và thực hiện nghĩa vụ tham gia Công an nhân dân năm 2027",tep:"vb/444-KH-UBND.pdf"}
 ];
 
+/* ===== Công văn chỉ đạo, tuyên truyền của UBND xã (bổ sung văn bản mới vào danh sách này) ===== */
+const CV = [
+ {so:"2410/UBND-KT",ngay:"31/10/2026",linhvuc:"Kinh tế",ngan:"Khai thác, sử dụng Ứng dụng Chuyển đổi số cấp xã",ten:"Công văn về việc triển khai khai thác, sử dụng Ứng dụng Chuyển đổi số cấp xã",tep:"vb/2410-UBND-KT.pdf"},
+ {so:"2408/UBND-KT",ngay:"30/10/2026",linhvuc:"Kinh tế",ngan:"Quản lý hoạt động kinh doanh theo phương thức đa cấp",ten:"Công văn triển khai thực hiện Quyết định số 146/2026/QĐ-UBND ngày 19/10/2026 của UBND thành phố Hà Nội về quản lý hoạt động kinh doanh theo phương thức đa cấp trên địa bàn Thành phố",tep:"vb/2408-UBND-KT.pdf"},
+ {so:"2393/UBND-VHXH",ngay:"30/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Ngày Văn hóa Việt Nam gắn với Ngày hội Đại đoàn kết 2026",ten:"Công văn hướng dẫn tổ chức Ngày Văn hóa Việt Nam gắn với Ngày hội Đại đoàn kết toàn dân tộc năm 2026",tep:"vb/2393-UBND-VHXH.pdf"},
+ {so:"2401/UBND-VHXH",ngay:"30/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Tăng cường phòng, chống dịch cúm A",ten:"Công văn về việc tăng cường phòng, chống dịch cúm A",tep:"vb/2401-UBND-VHXH.pdf"},
+ {so:"2357/UBND-KT",ngay:"27/10/2026",linhvuc:"Kinh tế",ngan:"Sử dụng năng lượng tiết kiệm và hiệu quả",ten:"Công văn triển khai thực hiện Thông tư số 64/2026/TT-BCT ngày 30/9/2026 của Bộ Công Thương về sử dụng năng lượng tiết kiệm và hiệu quả",tep:"vb/2357-UBND-KT.pdf"},
+ {so:"2336/UBND-VHXH",ngay:"26/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Sơ tuyển, khám sức khỏe nghĩa vụ quân sự, Công an năm 2027",ten:"Công văn về việc triển khai công tác sơ tuyển, khám sức khỏe thực hiện nghĩa vụ quân sự và tham gia nghĩa vụ Công an nhân dân năm 2027",tep:"vb/2336-UBND-VHXH.pdf"},
+ {so:"2295/UBND-KT",ngay:"21/10/2026",linhvuc:"Kinh tế",ngan:"Chương trình “Gian hàng số nâng tầm thương nhân Thủ đô”",ten:"Công văn về việc triển khai Chương trình “Gian hàng số nâng tầm thương nhân Thủ đô” trên địa bàn xã Tây Phương",tep:"vb/2295-UBND-KT.pdf"},
+ {so:"2284/UBND-VHXH",ngay:"21/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Phòng, chống dịch bệnh mùa Thu - Đông năm 2026",ten:"Công văn về việc tăng cường công tác phòng, chống dịch bệnh mùa Thu - Đông năm 2026",tep:"vb/2284-UBND-VHXH.pdf"},
+ {so:"2278/UBND-KT",ngay:"21/10/2026",linhvuc:"Kinh tế",ngan:"Địa điểm, lĩnh vực ưu tiên tổ chức hội chợ, triển lãm năm 2027",ten:"Công văn triển khai thực hiện Danh mục địa điểm và lĩnh vực ưu tiên được tổ chức hội chợ, triển lãm thương mại trên địa bàn xã Tây Phương năm 2027",tep:"vb/2278-UBND-KT.pdf"},
+ {so:"2247/UBND-KT",ngay:"16/10/2026",linhvuc:"Kinh tế",ngan:"Phát triển thị trường trong nước, kích cầu tiêu dùng",ten:"Công văn triển khai các giải pháp đẩy mạnh phát triển thị trường trong nước, kích cầu tiêu dùng góp phần thực hiện mục tiêu tăng trưởng năm 2026",tep:"vb/2247-UBND-KT.pdf"},
+ {so:"2222/UBND-VHXH",ngay:"14/10/2026",linhvuc:"Văn hóa - Xã hội",ngan:"Làm sạch, làm giàu dữ liệu tiêm chủng Quốc gia",ten:"Công văn về việc tiếp tục thực hiện và đẩy nhanh tiến độ làm sạch, làm giàu dữ liệu tiêm chủng Quốc gia",tep:"vb/2222-UBND-VHXH.pdf"}
+];
+
 /* ===== Văn bản quy phạm pháp luật của Thành phố ===== */
 const TP = [
  {so:"149/2026/QĐ-UBND",ngan:"Chuẩn nghèo đa chiều thành phố Hà Nội 2027 - 2030",ngay:"22/10/2026",coquan:"UBND thành phố Hà Nội",linhvuc:"An sinh xã hội",ten:"Quyết định ban hành quy định chuẩn nghèo đa chiều của thành phố Hà Nội giai đoạn 2027 - 2030",tt:"ok",ttText:"Văn bản QPPL đã ban hành",tep:"vb/149-2026-QD-UBND.pdf"},
@@ -388,6 +410,7 @@ const PORTALS = [
 const TABS=[
  {id:"muc-luc",label:"Mục lục",data:()=>null},
  {id:"xa",label:"Văn bản của xã",data:()=>XA},
+ {id:"cong-van",label:"Công văn chỉ đạo của xã",data:()=>CV},
  {id:"so-nganh",label:"Văn bản Sở, ngành",data:()=>SO},
  {id:"thanh-pho",label:"Văn bản Thành phố",data:()=>TP},
  {id:"trung-uong",label:"Văn bản Trung ương",data:()=>TW},
@@ -408,7 +431,7 @@ function renderTabs(){
     return `<a href="#${t.id}" ${t.id===cur?'aria-current="page"':""}>${t.label}${n}</a>`}).join("");
 }
 function renderStats(){
-  const files=[...XA,...SO,...TP].filter(x=>x.tep).length;
+  const files=[...XA,...CV,...SO,...TP].filter(x=>x.tep).length;
   document.getElementById("stats").innerHTML=
    `<div class="stat"><b>${XA.length}</b>kế hoạch của xã</div>`+
    `<div class="stat"><b>${SO.length}</b>văn bản Sở, ngành</div>`+
@@ -418,7 +441,7 @@ function renderStats(){
    `<div class="stat"><b>${PORTALS.reduce((a,g)=>a+g.items.length,0)}</b>cổng tra cứu chính thống</div>`;
 }
 function fillFields(){
-  const s=new Set([...XA,...SO,...TP,...TW].map(x=>x.linhvuc));
+  const s=new Set([...XA,...CV,...SO,...TP,...TW].map(x=>x.linhvuc));
   const sel=document.getElementById("field");
   [...s].sort((a,b)=>a.localeCompare(b,"vi")).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;sel.appendChild(o)});
 }
@@ -453,6 +476,7 @@ function filterList(list){
 
 const HEAD={
  "xa":["Văn bản của xã Tây Phương","Các kế hoạch triển khai do UBND xã ban hành, bản điện tử đã ký số và đóng dấu. Bấm “Đọc văn bản” để mở toàn văn."],
+ "cong-van":["Công văn chỉ đạo, tuyên truyền của xã Tây Phương","Công văn chỉ đạo, tuyên truyền của UBND xã thuộc lĩnh vực văn hóa - xã hội và kinh tế, bản điện tử có chữ ký, đóng dấu. Chọn lĩnh vực ở ô “Lĩnh vực” để lọc."],
  "so-nganh":["Văn bản của các Sở, ngành Thành phố","Văn bản hướng dẫn của các Sở, ngành thành phố Hà Nội gửi UBND các xã, phường, bản điện tử có chữ ký, đóng dấu. Văn bản mới tiếp tục được bổ sung."],
  "thanh-pho":["Văn bản của thành phố Hà Nội","Văn bản quy phạm pháp luật của UBND Thành phố có tệp đính kèm, và Luật Thủ đô. Văn bản khác tra cứu tại Công báo thành phố Hà Nội."],
  "trung-uong":["Văn bản Trung ương thường dùng ở cấp xã","Hiến pháp, luật, nghị định về chính quyền địa phương, hộ tịch, chứng thực, hòa giải ở cơ sở, phổ biến pháp luật, đất đai và các luật mới thông qua năm 2026."]
@@ -472,7 +496,8 @@ function renderView(){
      {k:"tw",tab:"trung-uong",ten:"Văn bản Trung ương",list:TW},
      {k:"tp",tab:"thanh-pho",ten:"Văn bản Thành phố",list:TP},
      {k:"so",tab:"so-nganh",ten:"Văn bản Sở, ngành",list:SO},
-     {k:"xa",tab:"xa",ten:"Văn bản của xã Tây Phương",list:XA}];
+     {k:"xa",tab:"xa",ten:"Kế hoạch của xã Tây Phương",list:XA},
+     {k:"xa",tab:"cong-van",ten:"Công văn chỉ đạo của xã",list:CV}];
     const total=groups.reduce((a,g)=>a+g.list.length,0);
     const item=x=>{
       const short=x.ngan||shortTitle(x.ten);
@@ -497,7 +522,7 @@ function renderView(){
     return;
   }
   const tab=TABS.find(t=>t.id===cur);const list=filterList(tab.data());
-  const kind={"xa":"xa","so-nganh":"so","thanh-pho":"tp","trung-uong":"tw"}[cur];
+  const kind={"xa":"xa","cong-van":"xa","so-nganh":"so","thanh-pho":"tp","trung-uong":"tw"}[cur];
   const [h,p]=HEAD[cur];
   let note="";
   if(cur==="trung-uong") note=`<div class="note"><b>Tình trạng hiệu lực rà soát đến 14/11/2026.</b> Một số luật mới do Quốc hội khóa XVI thông qua năm 2026 chưa có hiệu lực; trong thời gian đó vẫn áp dụng luật hiện hành.</div>`;
@@ -513,7 +538,8 @@ function renderShelves(){
   const S=[["trung-uong","Văn bản Trung ương","Hiến pháp, luật, nghị định",TW.length],
    ["thanh-pho","Văn bản Thành phố","HĐND, UBND thành phố Hà Nội",TP.length],
    ["so-nganh","Văn bản Sở, ngành","Hướng dẫn của các Sở, ngành Thành phố",SO.length],
-   ["xa","Kế hoạch triển khai của xã","Văn bản có chữ ký, đóng dấu của UBND xã",XA.length]];
+   ["xa","Kế hoạch triển khai của xã","Văn bản có chữ ký, đóng dấu của UBND xã",XA.length],
+   ["cong-van","Công văn chỉ đạo của xã","Văn hóa - xã hội, kinh tế",CV.length]];
   document.getElementById("shelfGrid").innerHTML=S.map(([id,t,d,n])=>`<a class="shelf" href="#${id}"><b>${t}</b><span>${d}</span><i>${n} văn bản</i></a>`).join("");
 }
 renderShelves();
@@ -562,6 +588,7 @@ document.getElementById("zoomOut").addEventListener("click",()=>{if(pdfDoc){scal
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!reader.classList.contains("hidden"))closeReader()});
 document.getElementById("view").addEventListener("click",e=>{const b=e.target.closest("button[data-file]");if(b)openReader(b.dataset.file,b.dataset.code,b.dataset.title)});
 fillFields();renderStats();renderView();
+if("serviceWorker" in navigator&&location.protocol==="https:"&&location.hostname.endsWith("github.io")){navigator.serviceWorker.register("sw.js").catch(()=>{});}
 </script>
 </body>
 </html>
